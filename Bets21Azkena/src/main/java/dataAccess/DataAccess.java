@@ -874,4 +874,9 @@ public class DataAccess {
 		db.remove(e);
 		db.getTransaction().commit();
 	}
+	
+	public ArretaElkarrizketa getArretaElkarrizketa(ArretaElkarrizketa ae) {
+		ArretaElkarrizketa emaitza = db.find(ArretaElkarrizketa.class, ae.getIdentifikadorea());
+		return emaitza;
+	}
 }

@@ -384,5 +384,13 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.close();
 		return errepikapenak;
 	}
+	
+	@WebMethod 
+	public ArretaElkarrizketa getArretaElkarrizketa(ArretaElkarrizketa ae) {
+		dbManager.open(false);
+		ArretaElkarrizketa emaitza = dbManager.getArretaElkarrizketa(ae);
+		dbManager.close();
+		return emaitza;
+	}
 }
 

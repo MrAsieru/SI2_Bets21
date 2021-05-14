@@ -178,6 +178,8 @@ public class ArretaZerbitzuaEmanGUI extends JFrame {
 				jakinarazpenak2.setText("");
 				selectedElkarrizketa=(ArretaElkarrizketa) elkarrizketakConbo.getSelectedItem();
 				if(selectedElkarrizketa!=null) {
+					BLFacade facade=MainGUI.getBusinessLogic();
+					selectedElkarrizketa=facade.getArretaElkarrizketa(selectedElkarrizketa);
 					bukatu.setVisible(true);
 					bukatu.setEnabled(true);
 					stop.setVisible(true);
