@@ -1,0 +1,100 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2021-09-09 18:28:08 #1 store] 
+Database '/home/mrasieru/git/SI2_Bets21/Bets21Azkena/bets.temp' is opened by 158250@mrasieru-Lenovo-G50-80
+
+[2021-09-09 18:28:08 #2 store] 
+Configuration path: /home/mrasieru/git/SI2_Bets21/Bets21Azkena/src/main/resources/objectdb.conf
+
+[2021-09-09 18:28:08 #3 type] 
+Type domain.Apustua is not enhanced.
+
+[2021-09-09 18:28:08 #4 type] 
+Type domain.Pronostikoa is not enhanced.
+
+[2021-09-09 18:28:08 #5 type] 
+Type domain.Pertsona is not enhanced.
+
+[2021-09-09 18:28:08 #6 type] 
+Type domain.Bezeroa is not enhanced.
+
+[2021-09-09 18:28:08 #7 type] 
+Type domain.Question is not enhanced.
+
+[2021-09-09 18:28:08 #8 type] 
+Type domain.ArretaElkarrizketa is not enhanced.
+
+[2021-09-09 18:28:08 #9 type] 
+Type domain.Errepikapena is not enhanced.
+
+[2021-09-09 18:28:08 #10 type] 
+Type domain.Mezua is not enhanced.
+
+[2021-09-09 18:28:08 #11 type] 
+Type domain.BezeroartekoMezua is not enhanced.
+
+[2021-09-09 18:28:08 #12 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2021-09-09 18:28:08 #13 type] 
+Type domain.Event is not enhanced.
+
+[2021-09-09 18:28:08 #14 type] 
+Type domain.ArretaMezua is not enhanced.
+
+[2021-09-09 18:28:08 #15 type] 
+Type domain.Langilea is not enhanced.
+
+[2021-09-09 18:28:08 #16 type] 
+Type domain.Admin is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2021-09-09 18:29:03 #1 store] 
+Database '/home/mrasieru/git/SI2_Bets21/Bets21Azkena/bets.temp' is opened by 158332@mrasieru-Lenovo-G50-80
+
+[2021-09-09 18:29:03 #2 store] 
+Configuration path: /home/mrasieru/git/SI2_Bets21/Bets21Azkena/src/main/resources/objectdb.conf
+
+[2021-09-09 18:29:03 #3 type] 
+Type domain.Apustua is not enhanced.
+
+[2021-09-09 18:29:03 #4 type] 
+Type domain.Pronostikoa is not enhanced.
+
+[2021-09-09 18:29:03 #5 type] 
+Type domain.Pertsona is not enhanced.
+
+[2021-09-09 18:29:03 #6 type] 
+Type domain.Bezeroa is not enhanced.
+
+[2021-09-09 18:29:03 #7 type] 
+Type domain.Question is not enhanced.
+
+[2021-09-09 18:29:03 #8 type] 
+Type domain.ArretaElkarrizketa is not enhanced.
+
+[2021-09-09 18:29:03 #9 type] 
+Type domain.Errepikapena is not enhanced.
+
+[2021-09-09 18:29:03 #10 type] 
+Type domain.Mezua is not enhanced.
+
+[2021-09-09 18:29:03 #11 type] 
+Type domain.BezeroartekoMezua is not enhanced.
+
+[2021-09-09 18:29:03 #12 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2021-09-09 18:29:03 #13 type] 
+Type domain.Event is not enhanced.
+
+[2021-09-09 18:29:03 #14 type] 
+Type domain.ArretaMezua is not enhanced.
+
+[2021-09-09 18:29:03 #15 type] 
+Type domain.Langilea is not enhanced.
+
+[2021-09-09 18:29:03 #16 type] 
+Type domain.Admin is not enhanced.
+

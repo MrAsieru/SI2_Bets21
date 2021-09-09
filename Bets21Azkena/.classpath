@@ -30,6 +30,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="src/main/resources/jcalendar-1.4.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="C:/Users/Josu/Documents/ESKOLA/UNI 2/SI/liburutegia/objectdb-2.6.9/bin/objectdb.jar"/>
+	<classpathentry kind="lib" path="src/main/resources/objectdb.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
