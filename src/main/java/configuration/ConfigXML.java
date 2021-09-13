@@ -2,6 +2,7 @@ package configuration;
 
 import java.io.File;
 
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -75,6 +76,8 @@ public class ConfigXML {
 		
 		  try {
 			  DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			  dbFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+			  dbFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
 			  DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			  Document doc = dBuilder.parse(new File(configFile));
 			  doc.getDocumentElement().normalize();
