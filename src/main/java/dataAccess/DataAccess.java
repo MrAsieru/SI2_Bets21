@@ -621,7 +621,7 @@ public class DataAccess {
 						bezeroa.addMugimendua("Apustuaren dirua itzuli ("+bet.getIdentifikadorea()+")", bet.getKopurua(),"bueltatu");
 						bezeroa.removeApustua(bet);
 						db.remove(bet);
-					}else if(bet.getAsmatutakoKop()==bet.getPronostikoKop()) {
+					}else if(bet.getAsmatutakoKop().equals(bet.getPronostikoKop())) {
 						double komisioa = 0;
 						if (bet.getErrepikatua()!=null) {
 							Bezeroa bez = bet.getErrepikatua();

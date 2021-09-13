@@ -1,6 +1,5 @@
 package dataAccess;
 
-
 import configuration.ConfigXML;
 
 
@@ -37,6 +36,7 @@ public class ObjectdbManagerServerAWS {
 		    	}
 			
 		} catch (Exception e) {
+			Thread.currentThread().interrupt();
 			System.out.println("Something has happened in ObjectdbManagerServer: "+e.toString());
 
 		}
