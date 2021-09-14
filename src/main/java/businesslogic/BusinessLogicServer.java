@@ -1,7 +1,7 @@
 /**
  * Package with the business logic of the application.
  */
-package businessLogic;
+package businesslogic;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -40,7 +40,7 @@ public class BusinessLogicServer extends JDialog {
 	public static void main(String[] args) {
 		try {
 			BusinessLogicServer dialog = new BusinessLogicServer();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setDefaultCloseOperation(BusinessLogicServer.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();

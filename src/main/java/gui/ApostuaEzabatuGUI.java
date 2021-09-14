@@ -6,9 +6,12 @@ package gui;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+
+import businesslogic.BLFacade;
+
 import java.awt.*;
 import java.awt.event.*;
-import businessLogic.BLFacade;
+
 import configuration.UtilDate;
 import domain.Apustua;
 import domain.Bezeroa;
