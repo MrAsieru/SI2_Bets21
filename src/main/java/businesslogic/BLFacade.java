@@ -1,4 +1,4 @@
-package businessLogic;
+package businesslogic;
 
 import java.util.Vector;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.Date;
 
 
 
-//import domain.Booking;
+
 import domain.Question;
 import domain.Apustua;
 import domain.ArretaElkarrizketa;

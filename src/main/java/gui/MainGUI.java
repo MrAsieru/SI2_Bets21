@@ -7,7 +7,7 @@ package gui;
 
 import javax.swing.*;
 
-import businessLogic.BLFacade;
+import businesslogic.BLFacade;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -57,7 +57,6 @@ public class MainGUI extends JFrame {
 				try {
 					//if (ConfigXML.getInstance().isBusinessLogicLocal()) facade.close();
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					System.out.println("Error: "+e1.toString()+" , probably problems with Business Logic or Database");
 				}
 				System.exit(1);
