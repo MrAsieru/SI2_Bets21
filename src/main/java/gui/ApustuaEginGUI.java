@@ -195,7 +195,7 @@ public class ApustuaEginGUI extends JFrame {
 						double minBet = getMinBet();
 						if(bet<minBet) {
 							jLabelMsg.setForeground(Color.RED);
-							jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("NotMinBet")+" "+minBet+"€");
+							jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("NotMinBet")+" "+minBet+"ï¿½");
 						}else{
 							BLFacade facade = MainGUI.getBusinessLogic();
 							bezeroa=facade.apustuaEgin(pronostikoak,bet,bezeroa);
@@ -205,7 +205,7 @@ public class ApustuaEginGUI extends JFrame {
 							for(int i = 0; i<pronostikoak.size(); i++) {
 								tableModelApustua.removeRow(0);
 							}
-							pronostikoak.removeAll(pronostikoak);
+							pronostikoak.clear();
 							jButtonCreate.setEnabled(false);
 							TotalMinBet.setText("");
 							TotalFee.setText("");
@@ -486,7 +486,7 @@ public static void paintDaysWithEvents(JCalendar jCalendar,Vector<Date> datesWit
 	
 	public boolean hartutaDago(Question question) {
 		for(Pronostikoa p : pronostikoak) {
-			if(p.getQuestion().getQuestionNumber()==question.getQuestionNumber()) {
+			if(p.getQuestion().getQuestionNumber().equals(question.getQuestionNumber())) {
 				return true;
 			}
 		}

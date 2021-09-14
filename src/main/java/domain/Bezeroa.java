@@ -84,7 +84,7 @@ public class Bezeroa extends Pertsona implements Serializable{
 		eguneratuDirua(kuota);
 		Mugimendua berria = new Mugimendua(deskripzioa, kuota, this, mota, data);
 		mugimenduak.add(berria);
-		if(mota=="irabazi") {
+		if(mota.equals("irabazi")) {
 			irabaziak++;
 		}
 		return berria;
