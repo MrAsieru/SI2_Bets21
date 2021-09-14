@@ -45,8 +45,8 @@ import exceptions.UserAlreadyExist;
  * It implements the data access to the objectDb database
  */
 public class DataAccess {
-	protected static EntityManager db;
-	protected static EntityManagerFactory emf;
+	protected EntityManager db;
+	protected EntityManagerFactory emf;
 
 	ConfigXML c = ConfigXML.getInstance();
 
@@ -83,26 +83,26 @@ public class DataAccess {
 				year += 1;
 			}
 
-			Event ev1 = new Event(1,"Atlético-Athletic", UtilDate.newDate(year, month, 17));
+			Event ev1 = new Event(1,"Atlï¿½tico-Athletic", UtilDate.newDate(year, month, 17));
 			Event ev2 = new Event(2, "Eibar-Barcelona", UtilDate.newDate(year, month, 17));
 			Event ev3 = new Event(3, "Getafe-Celta", UtilDate.newDate(year, month, 17));
-			Event ev4 = new Event(4, "Alavés-Deportivo", UtilDate.newDate(year, month, 17));
-			Event ev5 = new Event(5, "Español-Villareal", UtilDate.newDate(year, month, 17));
+			Event ev4 = new Event(4, "Alavï¿½s-Deportivo", UtilDate.newDate(year, month, 17));
+			Event ev5 = new Event(5, "Espaï¿½ol-Villareal", UtilDate.newDate(year, month, 17));
 			Event ev6 = new Event(6, "Las Palmas-Sevilla", UtilDate.newDate(year, month, 17));
 			Event ev7 = new Event(7, "Malaga-Valencia", UtilDate.newDate(year, month, 17));
-			Event ev8 = new Event(8, "Girona-Leganés", UtilDate.newDate(year, month, 17));
+			Event ev8 = new Event(8, "Girona-Leganï¿½s", UtilDate.newDate(year, month, 17));
 			Event ev9 = new Event(9, "Real Sociedad-Levante", UtilDate.newDate(year, month, 17));
 			Event ev10 = new Event(10, "Betis-Real Madrid", UtilDate.newDate(year, month, 17));
 
 			Event ev11 = new Event(11, "Atletico-Athletic", UtilDate.newDate(year, month, 1));
 			Event ev12 = new Event(12, "Eibar-Barcelona", UtilDate.newDate(year, month, 1));
 			Event ev13 = new Event(13, "Getafe-Celta", UtilDate.newDate(year, month, 1));
-			Event ev14 = new Event(14, "Alavés-Deportivo", UtilDate.newDate(year, month, 1));
-			Event ev15 = new Event(15, "Español-Villareal", UtilDate.newDate(year, month, 1));
+			Event ev14 = new Event(14, "Alavï¿½s-Deportivo", UtilDate.newDate(year, month, 1));
+			Event ev15 = new Event(15, "Espaï¿½ol-Villareal", UtilDate.newDate(year, month, 1));
 			Event ev16 = new Event(16, "Las Palmas-Sevilla", UtilDate.newDate(year, month, 1));
 
-			Event ev17 = new Event(17, "Málaga-Valencia", UtilDate.newDate(year, month + 1, 28));
-			Event ev18 = new Event(18, "Girona-Leganés", UtilDate.newDate(year, month + 1, 28));
+			Event ev17 = new Event(17, "Mï¿½laga-Valencia", UtilDate.newDate(year, month + 1, 28));
+			Event ev18 = new Event(18, "Girona-Leganï¿½s", UtilDate.newDate(year, month + 1, 28));
 			Event ev19 = new Event(19, "Real Sociedad-Levante", UtilDate.newDate(year, month + 1, 28));
 			Event ev20 = new Event(20, "Betis-Real Madrid", UtilDate.newDate(year, month + 1, 28));
 
@@ -144,7 +144,7 @@ public class DataAccess {
 			Bezeroa b1 = new Bezeroa("Tarek", "Chamkhi", "Ermina", "Tarek12301", "aaaaaaaa", "123456789", "Tarek12301@gmail.com",UtilDate.newDate(2001,8,9));
 			Bezeroa b2 = new Bezeroa("Josu", "Loidi", "Gorostidi", "Josulo", "aaaaaaaa", "123456789", "josulo@gmail.com",UtilDate.newDate(2001,8,9));
 			b2.setPublikoa(false);
-			Bezeroa b3 = new Bezeroa("Jose", "García", "Perez", "JoseRamon", "aaaaaaaa", "123456789", "JoseRamon@gmail.com",UtilDate.newDate(2001,8,9));
+			Bezeroa b3 = new Bezeroa("Jose", "Garcï¿½a", "Perez", "JoseRamon", "aaaaaaaa", "123456789", "JoseRamon@gmail.com",UtilDate.newDate(2001,8,9));
 			Bezeroa b4 = new Bezeroa("Josu", "Perez", "Galdos", "Josueeee", "aaaaaaaa", "123456789", "Josueeee@gmail.com",UtilDate.newDate(2001,8,9));
 			Bezeroa b5 = new Bezeroa("Saioa", "Goikoetxea", "Ugarte", "Saioo99", "b", "123456789", "Saioo99@gmail.com",UtilDate.newDate(2001,8,9));
 			Bezeroa b6 = new Bezeroa("Mikel", "Artola", "Peraz", "Gamer75", "aaaaaaaa", "123456789", "Gamer75@gmail.com",UtilDate.newDate(2001,8,9));

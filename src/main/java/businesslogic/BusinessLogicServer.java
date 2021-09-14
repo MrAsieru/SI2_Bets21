@@ -22,6 +22,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.logging.Logger;
 
 /**
  * It runs the business logic server as a separate process.
@@ -102,7 +103,7 @@ public class BusinessLogicServer extends JDialog {
 			try{
 				
 				if (!c.isDatabaseLocal()) {
-					System.out.println("\nWARNING: Please be sure ObjectdbManagerServer is launched\n           in machine: "+c.getDatabaseNode()+" port: "+c.getDatabasePort()+"\n");	
+					Logger.getLogger(this.getClass().getName()).info("\nWARNING: Please be sure ObjectdbManagerServer is launched\n           in machine: "+c.getDatabaseNode()+" port: "+c.getDatabasePort()+"\n");	
 				}
 				
 				service= "http://"+c.getBusinessLogicNode() +":"+ c.getBusinessLogicPort()+"/ws/"+c.getBusinessLogicName();
@@ -112,7 +113,7 @@ public class BusinessLogicServer extends JDialog {
 				
 			}
 			catch (Exception e) {
-				System.out.println("Error in BusinessLogicServer: "+e.toString());
+				Logger.getLogger(this.getClass().getName()).info("Error in BusinessLogicServer: "+e.toString());
 				textArea.append("\nYou should have not launched DBManagerServer...\n");
 				textArea.append("\n\nOr maybe there is a BusinessLogicServer already launched...\n");
 				throw e;
