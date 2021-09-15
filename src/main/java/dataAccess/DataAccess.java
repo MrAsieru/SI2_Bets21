@@ -429,10 +429,25 @@ public class DataAccess {
 				berria = new Bezeroa(izena, abizena1, abizena2, erabiltzaileIzena, pasahitza, telefonoZbkia, emaila, jaiotzeData);
 			}
 			db.getTransaction().begin();
-			db.persist(berria);
+			if (berria != null) db.persist(berria);
 			db.getTransaction().commit();
 			return berria;
 		}
+	}
+	
+	public Pertsona removeUser(String erabiltzaileIzena) {
+		TypedQuery<Pertsona> query = db.createQuery("SELECT p FROM Pertsona p WHERE p.erabiltzaileIzena=?1", Pertsona.class);
+		query.setParameter(1, erabiltzaileIzena);
+		List<Pertsona> pertsona = query.getResultList();
+		
+		if (!pertsona.isEmpty()) {
+			db.getTransaction().begin();
+			db.remove(pertsona.get(0));
+			db.getTransaction().commit();
+			
+			return pertsona.get(0);
+		}
+		return null;
 	}
 	
 	public void createEvent(String description, Date eventDate) throws EventAlreadyExist{
