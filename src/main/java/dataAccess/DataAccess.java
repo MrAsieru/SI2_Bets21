@@ -39,8 +39,9 @@ import exceptions.EventAlreadyExist;
 import exceptions.EventFinished;
 import exceptions.PronosticAlreadyExist;
 import exceptions.QuestionAlreadyExist;
-import exceptions.UserAlreadyExist;
+import exceptions.UserAlreadyExist; 
 
+import java.util.logging.Logger;
 /**
  * It implements the data access to the objectDb database
  */
@@ -51,11 +52,9 @@ public class DataAccess {
 	ConfigXML c = ConfigXML.getInstance();
 
 	public DataAccess(boolean initializeMode) {
-
-		System.out.println("Creating DataAccess instance => isDatabaseLocal: " + c.isDatabaseLocal()
+		Logger.getLogger(this.getClass().getName()).info("Creating DataAccess instance => isDatabaseLocal: " + c.isDatabaseLocal()
 				+ " getDatabBaseOpenMode: " + c.getDataBaseOpenMode());
 		open(initializeMode);
-
 	}
 
 	public DataAccess() {

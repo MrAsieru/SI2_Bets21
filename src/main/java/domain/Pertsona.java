@@ -29,11 +29,11 @@ public abstract class Pertsona implements Serializable{
 	public String email;
 	public Date jaiotzeData;
 	
-	public Pertsona(){
+	protected Pertsona(){
 		super();
 	}
 	
-	public Pertsona (String izena, String abizena1, String abizena2, String erabiltzaileIzena, String pasahitza, String telefonoZbkia, String email, Date jaiotzeData) {
+	protected Pertsona (String izena, String abizena1, String abizena2, String erabiltzaileIzena, String pasahitza, String telefonoZbkia, String email, Date jaiotzeData) {
 		this.izena = izena;
 		this.abizena1 = abizena1;
 		this.abizena2 = abizena2;
