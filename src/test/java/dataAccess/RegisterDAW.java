@@ -9,7 +9,6 @@ import configuration.UtilDate;
 import domain.Bezeroa;
 import domain.Pertsona;
 import exceptions.UserAlreadyExist;
-import test.dataAccess.TestDataAccess;
 
 public class RegisterDAW {
 	
