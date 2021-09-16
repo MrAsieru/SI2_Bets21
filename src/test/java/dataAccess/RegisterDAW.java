@@ -2,6 +2,7 @@ package dataAccess;
 
 import static org.junit.Assert.*;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,10 +15,17 @@ import test.dataAccess.TestDataAccess;
 public class RegisterDAW {
 	
 	//sut:system under test
-	static DataAccess sut=new DataAccess(true);
+	static DataAccess sut=new DataAccess(false);
 	
 	//additional operations needed to execute the test 
 	static TestDataAccess testDA=new TestDataAccess();
+	
+	@After
+	public void garbituDatuBasea() {
+		testDA.open();
+		testDA.removeUser("Proba");
+		testDA.close();
+	}
 	
 	/**
 	 * Erabiltzailea existitzen da
@@ -27,7 +35,7 @@ public class RegisterDAW {
 		//Sistema konfiguratu
 		testDA.open();
 		try {
-			testDA.register("Proba", "Proba", "Proba", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "bezeroa");
+			testDA.register("Izena1", "Abizena1", "Abizena1", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "bezeroa");
 		} catch (UserAlreadyExist uae) {
 			fail();
 		}
@@ -35,14 +43,13 @@ public class RegisterDAW {
 		
 		//Sistema probatu
 		try {
-			sut.register("Proba", "Proba", "Proba", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "bezeroa");
+			sut.open(false);
+			sut.register("Izena1", "Abizena1", "Abizena1", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "bezeroa");
 			fail();
 		} catch (UserAlreadyExist uae) {
 			assertTrue(true);
-		} finally {			
-			testDA.open();
-			testDA.removeUser("Proba");
-			testDA.close();
+		} finally {	
+			sut.close();
 		}
 	}
 	
@@ -50,28 +57,24 @@ public class RegisterDAW {
 	 * Erabiltzailea ez dauka motarik
 	 */
 	@Test
-	public void testRegister2() {
+	public void testRegister2() {		
 		//Sistema probatu
-		testDA.open();
 		try {
-			testDA.register("Proba", "Proba", "Proba", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "ezer");
+			sut.open(false);
+			sut.register("Izena2", "Abizena2", "Abizena2", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "ezer");
 		} catch (UserAlreadyExist uae) {
 			fail();
 		} finally {
-			testDA.close();
+			sut.close();
 		}
 		
 		// Konprobatu DB-n ez dagoela
+		sut.open(false);
 		Pertsona p = sut.db.find(Pertsona.class, "Proba");
+		sut.close();
 		
 		if (p == null) assertTrue(true);
-		else fail();
-		
-		// Erabiltzailea ezabatu
-		testDA.open();
-		testDA.removeUser("Proba");
-		testDA.close();
-		
+		else fail();	
 	}
 	
 	/**
@@ -80,26 +83,22 @@ public class RegisterDAW {
 	@Test
 	public void testRegister3() {
 		//Sistema probatu
-		testDA.open();
 		try {
-			testDA.register("Proba", "Proba", "Proba", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "admin");
+			sut.open(false);
+			sut.register("Izena3", "Abizena3", "Abizena3", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "admin");
 		} catch (UserAlreadyExist uae) {
 			fail();
 		} finally {
-			testDA.close();
+			sut.close();
 		}
 		
 		// Konprobatu DB-n dagoela eta admin motatakoa dela
+		sut.open(false);
 		Pertsona p = sut.db.find(Pertsona.class, "Proba");
+		sut.close();
 		
-		if (p == null) assertTrue(true);
+		if (p != null && p.izena.equals("Izena3")) assertTrue(true);
 		else fail();
-		
-		// Erabiltzailea ezabatu
-		testDA.open();
-		testDA.removeUser("Proba");
-		testDA.close();
-		
 	}
 	
 	/**
@@ -107,8 +106,23 @@ public class RegisterDAW {
 	 */
 	@Test
 	public void testRegister4() {
-		// Hasieraketa
+		//Sistema probatu
+		try {
+			sut.open(false);
+			sut.register("Izena4", "Abizena4", "Abizena4", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "langilea");
+		} catch (UserAlreadyExist uae) {
+			fail();
+		} finally {
+			sut.close();
+		}
 		
+		// Konprobatu DB-n dagoela eta admin motatakoa dela
+		sut.open(false);
+		Pertsona p = sut.db.find(Pertsona.class, "Proba");
+		sut.close();
+		
+		if (p != null && p.izena.equals("Izena4")) assertTrue(true);
+		else fail();
 	}
 	
 	/**
@@ -116,8 +130,23 @@ public class RegisterDAW {
 	 */
 	@Test
 	public void testRegister5() {
-		// Hasieraketa
+		//Sistema probatu
+		try {
+			sut.open(false);
+			sut.register("Izena5", "Abizena5", "Abizena5", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "bezeroa");
+		} catch (UserAlreadyExist uae) {
+			fail();
+		} finally {
+			sut.close();
+		}
 		
+		// Konprobatu DB-n dagoela eta admin motatakoa dela
+		sut.open(false);
+		Pertsona p = sut.db.find(Pertsona.class, "Proba");
+		sut.close();
+		
+		if (p != null && p.izena.equals("Izena5")) assertTrue(true);
+		else fail();
 	}
 
 }
