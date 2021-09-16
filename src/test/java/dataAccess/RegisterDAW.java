@@ -9,16 +9,15 @@ import configuration.UtilDate;
 import domain.Bezeroa;
 import domain.Pertsona;
 import exceptions.UserAlreadyExist;
+import test.dataAccess.TestDataAccess;
 
 public class RegisterDAW {
 	
 	//sut:system under test
 	static DataAccess sut=new DataAccess(true);
 	
-	@Before
-	public void setUp() {
-		
-	}
+	//additional operations needed to execute the test 
+	static TestDataAccess testDA=new TestDataAccess();
 	
 	/**
 	 * Erabiltzailea existitzen da
@@ -45,8 +44,11 @@ public class RegisterDAW {
 		} catch (UserAlreadyExist uae) {
 			assertTrue(true);
 		} finally {
-			sut.removeUser("Proba");
 			sut.close();
+			
+			testDA.open();
+			testDA.removeUser("Proba");
+			testDA.close();
 		}
 	}
 	
@@ -74,9 +76,9 @@ public class RegisterDAW {
 		else fail();
 		
 		// Erabiltzailea ezabatu
-		sut.open(false);
-		sut.removeUser("Proba");
-		sut.close();
+		testDA.open();
+		testDA.removeUser("Proba");
+		testDA.close();
 		
 	}
 	

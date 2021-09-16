@@ -435,21 +435,6 @@ public class DataAccess {
 		}
 	}
 	
-	public Pertsona removeUser(String erabiltzaileIzena) {
-		TypedQuery<Pertsona> query = db.createQuery("SELECT p FROM Pertsona p WHERE p.erabiltzaileIzena=?1", Pertsona.class);
-		query.setParameter(1, erabiltzaileIzena);
-		List<Pertsona> pertsona = query.getResultList();
-		
-		if (!pertsona.isEmpty()) {
-			db.getTransaction().begin();
-			db.remove(pertsona.get(0));
-			db.getTransaction().commit();
-			
-			return pertsona.get(0);
-		}
-		return null;
-	}
-	
 	public void createEvent(String description, Date eventDate) throws EventAlreadyExist{
 		TypedQuery<Event> query = db.createQuery("SELECT e FROM Event e WHERE e.description=?1 AND e.eventDate=?2", Event.class);
 		query.setParameter(1, description);
@@ -463,7 +448,6 @@ public class DataAccess {
 			db.persist(berria);
 			db.getTransaction().commit();
 		}
-
 	}
 
 	public void close() {
