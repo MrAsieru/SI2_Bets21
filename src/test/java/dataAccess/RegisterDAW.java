@@ -24,28 +24,22 @@ public class RegisterDAW {
 	 */
 	@Test
 	public void testRegister1() {
-		// Hasieraketa
-		Pertsona p = new Bezeroa("Proba", "Proba", "Proba", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1));
-		
 		//Sistema konfiguratu
-		sut.open(false);
+		testDA.open();
 		try {
-			sut.register("Proba", "Proba", "Proba", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "bezeroa");
+			testDA.register("Proba", "Proba", "Proba", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "bezeroa");
 		} catch (UserAlreadyExist uae) {
 			fail();
 		}
-		sut.close();
+		testDA.close();
 		
 		//Sistema probatu
-		sut.open(false);
 		try {
 			sut.register("Proba", "Proba", "Proba", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "bezeroa");
 			fail();
 		} catch (UserAlreadyExist uae) {
 			assertTrue(true);
-		} finally {
-			sut.close();
-			
+		} finally {			
 			testDA.open();
 			testDA.removeUser("Proba");
 			testDA.close();
@@ -58,19 +52,17 @@ public class RegisterDAW {
 	@Test
 	public void testRegister2() {
 		//Sistema probatu
-		sut.open(false);
+		testDA.open();
 		try {
-			sut.register("Proba", "Proba", "Proba", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "ezer");
+			testDA.register("Proba", "Proba", "Proba", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "ezer");
 		} catch (UserAlreadyExist uae) {
 			fail();
 		} finally {
-			sut.close();
+			testDA.close();
 		}
 		
-		// Konprobatu DB-n ez sdagoela
-		sut.open(false);
+		// Konprobatu DB-n ez dagoela
 		Pertsona p = sut.db.find(Pertsona.class, "Proba");
-		sut.close();
 		
 		if (p == null) assertTrue(true);
 		else fail();
@@ -87,7 +79,26 @@ public class RegisterDAW {
 	 */
 	@Test
 	public void testRegister3() {
-		// Hasieraketa
+		//Sistema probatu
+		testDA.open();
+		try {
+			testDA.register("Proba", "Proba", "Proba", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "admin");
+		} catch (UserAlreadyExist uae) {
+			fail();
+		} finally {
+			testDA.close();
+		}
+		
+		// Konprobatu DB-n dagoela eta admin motatakoa dela
+		Pertsona p = sut.db.find(Pertsona.class, "Proba");
+		
+		if (p == null) assertTrue(true);
+		else fail();
+		
+		// Erabiltzailea ezabatu
+		testDA.open();
+		testDA.removeUser("Proba");
+		testDA.close();
 		
 	}
 	

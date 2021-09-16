@@ -11,9 +11,13 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import configuration.ConfigXML;
+import domain.Admin;
+import domain.Bezeroa;
 import domain.Event;
+import domain.Langilea;
 import domain.Pertsona;
 import domain.Question;
+import exceptions.UserAlreadyExist;
 
 public class TestDataAccess {
 	protected  EntityManager  db;
@@ -92,6 +96,28 @@ public class TestDataAccess {
 		} else 
 		return false;
 		
+	}
+	
+	public Pertsona register(String izena, String abizena1, String abizena2, String erabiltzaileIzena, String pasahitza, String telefonoZbkia, String emaila, Date jaiotzeData, String mota) throws UserAlreadyExist{
+		TypedQuery<Pertsona> query = db.createQuery("SELECT p FROM Pertsona p WHERE p.erabiltzaileIzena=?1", Pertsona.class);
+		query.setParameter(1, erabiltzaileIzena);
+		List<Pertsona> pertsona = query.getResultList();
+		if(!pertsona.isEmpty()) {
+			throw new UserAlreadyExist();
+		}else {
+			Pertsona berria = null;
+			if(mota.equals("admin")) {
+				berria = new Admin(izena, abizena1, abizena2, erabiltzaileIzena, pasahitza, telefonoZbkia, emaila, jaiotzeData);
+			}else if (mota.equals("langilea")) {
+				berria = new Langilea(izena, abizena1, abizena2, erabiltzaileIzena, pasahitza, telefonoZbkia, emaila, jaiotzeData);
+			}else if (mota.equals("bezeroa")) {
+				berria = new Bezeroa(izena, abizena1, abizena2, erabiltzaileIzena, pasahitza, telefonoZbkia, emaila, jaiotzeData);
+			}
+			db.getTransaction().begin();
+			if (berria != null) db.persist(berria);
+			db.getTransaction().commit();
+			return berria;
+		}
 	}
 	
 	public Pertsona removeUser(String erabiltzaileIzena) {
