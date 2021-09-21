@@ -784,7 +784,7 @@ public class PostontziaGUI extends JFrame {
 	private ArretaElkarrizketa getElkarrizketa(ArretaMezua m) {
 		for(ArretaElkarrizketa ae : elkarrizketak) {
 			for(ArretaMezua am : ae.getLangileakBidalitakoak()) {
-				if(am.getIdentifikadorea()==m.getIdentifikadorea()) {
+				if(m.getIdentifikadorea().equals(am.getIdentifikadorea())) {
 					return ae;
 				}
 			}
