@@ -757,7 +757,13 @@ public class PostontziaGUI extends JFrame {
 					}else {
 						row.add(ResourceBundle.getBundle("Etiquetas").getString("Admin"));
 					}
-					row.add(getElkarrizketa((ArretaMezua)m).getGaia());
+					ArretaElkarrizketa arElk = getElkarrizketa((ArretaMezua)m);
+					if(arElk != null) {
+						row.add(arElk.getGaia());
+					}else { // Ez da arretaElkarrizketa Objektua topatu Arreta mezuaren barne. ArretaMezuak ez du elkarrizketarik //TODO ezinezkoa?
+						row.add("-");
+					}
+					
 					String egoera;
 					if(m.isIrakurrita()) {
 						egoera=ResourceBundle.getBundle("Etiquetas").getString("Answered");
