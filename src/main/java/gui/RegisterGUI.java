@@ -313,9 +313,11 @@ public class RegisterGUI extends JFrame {
 	 */
 	public boolean check() {
 		boolean pasa = true;
-		Pattern pattern=Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+"[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-		Matcher mather=pattern.matcher(e_mail.getText());
-		if(mather.find()!=true) {
+		
+		String emailText = e_mail.getText();
+		Pattern pattern=Pattern.compile("^[\\w-\\+]+(\\.[\\w-]++)*+@[\\w]+(\\.[\\w]++)*+(\\.[A-Za-z]{2,})$"); //++ eta *+ (Possessive egin: https://www.regular-expressions.info/possessive.html )
+		Matcher matcher=pattern.matcher(emailText);
+		if(matcher.find()) {
 			emailMezua.setText(ResourceBundle.getBundle("Etiquetas").getString("Invalid"));
 			pasa=false;
 		}
