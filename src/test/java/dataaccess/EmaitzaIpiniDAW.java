@@ -13,7 +13,9 @@ import com.objectdb.o.CLN.q;
 
 import businesslogic.BLFacade;
 import configuration.UtilDate;
+import domain.Apustua;
 import domain.Bezeroa;
+import domain.Errepikapena;
 import domain.Event;
 import domain.Pertsona;
 import domain.Pronostikoa;
@@ -22,6 +24,7 @@ import exceptions.PronosticAlreadyExist;
 import test.dataaccess.TestDataAccess;
 
 public class EmaitzaIpiniDAW { 
+	Event event;
 	
 	//sut:system under test
 	static DataAccess sut=new DataAccess(false);
@@ -32,11 +35,21 @@ public class EmaitzaIpiniDAW {
 	@Before
 	public void ireki() {
 		sut.open(false);
+		testDA.open();
 	}
 		
 	@After
 	public void itxi() {
 		sut.close();
+		testDA.close();
+	}
+	
+	@After
+	public void garbituDatuBasea() {
+		testDA.open();
+		testDA.removeUser("Proba");
+		testDA.removeEvent(event);
+		testDA.close();
 	}
 	
 	@Test
@@ -44,9 +57,9 @@ public class EmaitzaIpiniDAW {
 		Question q = null;
 		Pronostikoa p = null;
 		
-		Event event = testDA.addEventWithQuestion("E", new Date(), "Q", 0);
+		event = testDA.addEventWithQuestion("E", new Date(), "Q", 0);
 		try {
-			q = sut.getQuestions(event).get(0);
+			q = event.getQuestions().firstElement();
 			p = sut.createPronostic(q, "D", 0.0);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -65,14 +78,14 @@ public class EmaitzaIpiniDAW {
 		
 		//Erabiltzaileak sortu
 		try {
-		per1 = (Bezeroa)sut.register("Izena1", "Abizena1", "Abizena1", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "bezeroa");
+			per1 = (Bezeroa)sut.register("Izena1", "Abizena1", "Abizena1", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "bezeroa");
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
 		
 		//Galderak sortu
-		Event event = testDA.addEventWithQuestion("E", new Date(), "Q", 0);
-		q = sut.getQuestions(event).get(0);
+		event = testDA.addEventWithQuestion("E", new Date(), "Q", 0);
+		q = event.getQuestions().firstElement();
 		
 		//Pronostikoak sortu
 		try {
@@ -85,7 +98,7 @@ public class EmaitzaIpiniDAW {
 		}
 		
 		//Apustuak sortu
-		sut.apustuaEgin(pronostikoak, 0.0, (Bezeroa)per1);
+		sut.apustuaEgin(pronostikoak, 0.0, per1);
 		
 		int asmatukop = p1.getApustuak().get(0).getAsmatutakoKop();
 		sut.emaitzaIpini(q, p1);
@@ -102,14 +115,14 @@ public class EmaitzaIpiniDAW {
 		
 		//Erabiltzaileak sortu
 		try {
-		per1 = (Bezeroa)sut.register("Izena1", "Abizena1", "Abizena1", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "bezeroa");
+			per1 = (Bezeroa)sut.register("Izena1", "Abizena1", "Abizena1", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "bezeroa");
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
 		
 		//Galderak sortu
-		Event event = testDA.addEventWithQuestion("E", new Date(), "Q", 0);
-		q = sut.getQuestions(event).get(0);
+		event = testDA.addEventWithQuestion("E", new Date(), "Q", 0);
+		q = event.getQuestions().firstElement();
 		
 		//Pronostikoak sortu
 		try {
@@ -143,8 +156,8 @@ public class EmaitzaIpiniDAW {
 		}
 		
 		//Galderak sortu
-		Event event = testDA.addEventWithQuestion("E", new Date(), "Q", 0);
-		q = sut.getQuestions(event).get(0);
+		event = testDA.addEventWithQuestion("E", new Date(), "Q", 0);
+		q = event.getQuestions().firstElement();
 		
 		//Pronostikoak sortu
 		try {
@@ -154,9 +167,11 @@ public class EmaitzaIpiniDAW {
 			e.printStackTrace();
 		}
 		
+		
 		//Apustuak sortu
 		sut.apustuaEgin(pronostikoak, 0.0, (Bezeroa)per1);
-		sut.apustuaEgin(pronostikoak, 0.0, (Bezeroa)per1);
+		Errepikapena e = new Errepikapena();
+		sut.getBezeroa(per1.getErabiltzaileIzena()).addErrepikatua(e);
 		
 		int asmatukop = p1.getApustuak().get(0).getAsmatutakoKop();
 		sut.emaitzaIpini(q, p1);
