@@ -4,7 +4,7 @@ import configuration.UtilDate;
 
 import com.toedter.calendar.JCalendar;
 
-import businessLogic.BLFacade;
+import businesslogic.BLFacade;
 import domain.Question;
 import javax.swing.*;
 import java.awt.*;

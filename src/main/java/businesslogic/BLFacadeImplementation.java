@@ -1,4 +1,4 @@
-package businessLogic;
+package businesslogic;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,7 +9,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 import configuration.ConfigXML;
-import dataAccess.DataAccess;
+import dataaccess.DataAccess;
 import domain.Question;
 import domain.Apustua;
 import domain.ArretaElkarrizketa;

@@ -1,4 +1,4 @@
-package businessLogic;
+package businesslogic;
 
 import java.util.Vector;
 import java.util.ArrayList;

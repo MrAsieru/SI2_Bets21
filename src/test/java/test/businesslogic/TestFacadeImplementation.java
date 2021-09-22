@@ -1,11 +1,11 @@
-package test.businessLogic;
+package test.businesslogic;
 
 
 import java.util.Date;
 
 import configuration.ConfigXML;
 import domain.Event;
-import test.dataAccess.TestDataAccess;
+import test.dataaccess.TestDataAccess;
 
 public class TestFacadeImplementation {
 	TestDataAccess dbManagerTest;

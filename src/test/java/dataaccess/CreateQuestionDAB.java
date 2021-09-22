@@ -1,4 +1,4 @@
-package dataAccess;
+package dataaccess;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -11,13 +11,13 @@ import java.util.Date;
 import org.junit.Test;
 
 import configuration.ConfigXML;
-import dataAccess.DataAccess;
+import dataaccess.DataAccess;
 import domain.Event;
 import domain.Question;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
-import test.businessLogic.TestFacadeImplementation;
-import test.dataAccess.TestDataAccess;
+import test.businesslogic.TestFacadeImplementation;
+import test.dataaccess.TestDataAccess;
 
 public class CreateQuestionDAB {
 

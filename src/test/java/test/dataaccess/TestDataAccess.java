@@ -1,4 +1,4 @@
-package test.dataAccess;
+package test.dataaccess;
 
 import java.util.Date;
 import java.util.HashMap;
