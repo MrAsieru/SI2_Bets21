@@ -1,5 +1,8 @@
 package test.dataaccess;
 
+import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +15,7 @@ import javax.persistence.TypedQuery;
 
 import configuration.ConfigXML;
 import domain.Admin;
+import domain.Apustua;
 import domain.Bezeroa;
 import domain.Event;
 import domain.Langilea;
@@ -118,6 +122,15 @@ public class TestDataAccess {
 			db.getTransaction().commit();
 			return berria;
 		}
+	}
+	
+	public List<Apustua> getApustuak() {
+		List<Apustua> apustuak = new ArrayList<>();
+		TypedQuery<Apustua> query = db.createQuery("SELECT a FROM Apustua a", Apustua.class);
+		apustuak = query.getResultList();
+		
+		return apustuak;
+	
 	}
 	
 	public Pertsona removeUser(String erabiltzaileIzena) {

@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -48,6 +49,7 @@ public class EmaitzaIpiniDAW {
 	public void garbituDatuBasea() {
 		testDA.open();
 		testDA.removeUser("Proba");
+		testDA.removeUser("Proba2");
 		testDA.removeEvent(event);
 		testDA.close();
 	}
@@ -138,21 +140,23 @@ public class EmaitzaIpiniDAW {
 		int asmatukop = p1.getApustuak().get(0).getAsmatutakoKop();
 		sut.emaitzaIpini(q, p1);
 		assertTrue(asmatukop<p1.getApustuak().get(0).getAsmatutakoKop());
-		assertTrue(per1.getDirua()>0.0);
+		assertTrue(per1.getMugimenduak().size()!=0);
 	}
 	
 	@Test
 	public void test4() {
+		Bezeroa per2 = new Bezeroa();
 		Question q = null;
 		Pronostikoa p1 = null;
 		Bezeroa per1 = null;
-		ArrayList<Pronostikoa> pronostikoak = new ArrayList<>();
+		ArrayList<Pronostikoa> pronostikoak1 = new ArrayList<>();
+		ArrayList<Pronostikoa> pronostikoak2 = new ArrayList<>();
 		
 		//Erabiltzaileak sortu
 		try {
 		per1 = (Bezeroa)sut.register("Izena1", "Abizena1", "Abizena1", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "bezeroa");
 		} catch (Exception e) {
-			e.getStackTrace();
+			e.printStackTrace(); 
 		}
 		
 		//Galderak sortu
@@ -162,20 +166,22 @@ public class EmaitzaIpiniDAW {
 		//Pronostikoak sortu
 		try {
 			p1 = sut.createPronostic(q, "A", 0.0);
-			pronostikoak.add(p1);
+			pronostikoak1.add(p1);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		
 		//Apustuak sortu
-		sut.apustuaEgin(pronostikoak, 0.0, (Bezeroa)per1);
-		Errepikapena e = new Errepikapena();
-		sut.getBezeroa(per1.getErabiltzaileIzena()).addErrepikatua(e);
+		sut.apustuaEgin(pronostikoak1, 0.0, (Bezeroa)per1);
+		List<Apustua> apustuak = testDA.getApustuak();
+		//Apustua apustua = apustuak.indexOf((Bezeroa)per1.get);
+		//apustua.setErrepikatua(per1);
+		
 		
 		int asmatukop = p1.getApustuak().get(0).getAsmatutakoKop();
 		sut.emaitzaIpini(q, p1);
 		assertTrue(asmatukop<p1.getApustuak().get(0).getAsmatutakoKop());
-		assertTrue(per1.getDirua()>0.0);
+		assertTrue(per1.getMugimenduak().size()!=0);
 	}
 }
