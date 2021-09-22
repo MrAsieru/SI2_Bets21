@@ -7,7 +7,7 @@ import javax.swing.*;
 
 import com.toedter.calendar.JCalendar;
 
-import businesslogic.BLFacade;
+import businessLogic.BLFacade;
 
 import java.awt.*;
 import java.awt.event.*;

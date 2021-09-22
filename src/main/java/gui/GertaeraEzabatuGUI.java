@@ -24,7 +24,7 @@ import javax.swing.JScrollPane;
 
 import com.toedter.calendar.JCalendar;
 
-import businesslogic.BLFacade;
+import businessLogic.BLFacade;
 import configuration.UtilDate;
 import domain.Event;
 

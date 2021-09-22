@@ -7,7 +7,7 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import businesslogic.BLFacade;
+import businessLogic.BLFacade;
 
 import java.awt.*;
 import java.awt.event.*;

@@ -14,7 +14,7 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import businesslogic.BLFacade;
+import businessLogic.BLFacade;
 import domain.Langilea;
 
 public class PuntuazioakIkusiGUI extends JFrame {

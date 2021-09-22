@@ -16,7 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import businesslogic.BLFacade;
+import businessLogic.BLFacade;
 import domain.Bezeroa;
 import domain.ErrepikatuakContainer;
 import java.awt.event.MouseAdapter;

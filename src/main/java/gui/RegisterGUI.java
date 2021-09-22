@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import businesslogic.BLFacade;
+import businessLogic.BLFacade;
 import configuration.UtilDate;
 import domain.Bezeroa;
 import domain.Pertsona;
