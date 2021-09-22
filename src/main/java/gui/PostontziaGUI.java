@@ -758,7 +758,13 @@ public class PostontziaGUI extends JFrame {
 					}else {
 						row.add(ResourceBundle.getBundle("Etiquetas").getString("Admin"));
 					}
-					row.add(getElkarrizketa((ArretaMezua)m).getGaia());
+					ArretaElkarrizketa arElk = getElkarrizketa((ArretaMezua)m);
+					if(arElk != null) {
+						row.add(arElk.getGaia());
+					}else { // Ez da arretaElkarrizketa Objektua topatu Arreta mezuaren barne. ArretaMezuak ez du elkarrizketarik //TODO ezinezkoa?
+						row.add("-");
+					}
+					
 					String egoera;
 					if(m.isIrakurrita()) {
 						egoera=ResourceBundle.getBundle("Etiquetas").getString("Answered");
@@ -785,7 +791,7 @@ public class PostontziaGUI extends JFrame {
 	private ArretaElkarrizketa getElkarrizketa(ArretaMezua m) {
 		for(ArretaElkarrizketa ae : elkarrizketak) {
 			for(ArretaMezua am : ae.getLangileakBidalitakoak()) {
-				if(am.getIdentifikadorea()==m.getIdentifikadorea()) {
+				if(m.getIdentifikadorea().equals(am.getIdentifikadorea())) {
 					return ae;
 				}
 			}

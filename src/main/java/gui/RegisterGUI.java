@@ -313,9 +313,13 @@ public class RegisterGUI extends JFrame {
 	 */
 	public boolean check() {
 		boolean pasa = true;
-		Pattern pattern=Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+"[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-		Matcher mather=pattern.matcher(e_mail.getText());
-		if(mather.find()!=true) {
+		
+		String emailText = e_mail.getText();
+		Pattern pattern=Pattern.compile("^[\\w-\\+]+(\\.[\\w-]++)*+@[\\w]+(\\.[\\w]++)*+$"); //++ eta *+ (Possessive egin: https://www.regular-expressions.info/possessive.html )
+		Pattern pattern2 = Pattern.compile("\\.[A-Za-z]{2,}$"); // Begiratu ea azkenean bakarrik 2> karaktere katea ahal dagoen
+		Matcher matcher=pattern.matcher(emailText);
+		Matcher matcher2 = pattern2.matcher(emailText);
+		if(matcher.find() && matcher2.find()) {
 			emailMezua.setText(ResourceBundle.getBundle("Etiquetas").getString("Invalid"));
 			pasa=false;
 		}
