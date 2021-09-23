@@ -18,6 +18,7 @@ import domain.Apustua;
 import domain.Bezeroa;
 import domain.Errepikapena;
 import domain.Event;
+import domain.Mugimendua;
 import domain.Pertsona;
 import domain.Pronostikoa;
 import domain.Question;
@@ -25,6 +26,8 @@ import exceptions.PronosticAlreadyExist;
 import test.dataaccess.TestDataAccess;
 
 public class EmaitzaIpiniDAW { 
+	//TODO kodea hobetu ulertu eta garbitu
+	
 	Event event;
 	
 	//sut:system under test
@@ -134,18 +137,18 @@ public class EmaitzaIpiniDAW {
 			e.printStackTrace();
 		}
 		
-		//Apustuak sortu
+		//Apustuak sortu (mugimendu bat sortzen da)
 		sut.apustuaEgin(pronostikoak, 0.0, (Bezeroa)per1);
 		
 		int asmatukop = p1.getApustuak().get(0).getAsmatutakoKop();
+		
 		sut.emaitzaIpini(q, p1);
 		assertTrue(asmatukop<p1.getApustuak().get(0).getAsmatutakoKop());
-		assertTrue(per1.getMugimenduak().size()!=0);
+		assertTrue(per1.getMugimenduak().size()==2);
 	}
 	
 	@Test
 	public void test4() {
-		Bezeroa per2 = new Bezeroa();
 		Question q = null;
 		Pronostikoa p1 = null;
 		Bezeroa per1 = null;
@@ -174,14 +177,16 @@ public class EmaitzaIpiniDAW {
 		
 		//Apustuak sortu
 		sut.apustuaEgin(pronostikoak1, 0.0, (Bezeroa)per1);
-		List<Apustua> apustuak = testDA.getApustuak();
-		//Apustua apustua = apustuak.indexOf((Bezeroa)per1.get);
-		//apustua.setErrepikatua(per1);
+		Errepikapena errepikapena =  new Errepikapena(per1, per1, 0, 0, 0);
+		per1.addErrepikatua(errepikapena);
+		List<Apustua> apustuak = per1.getApustuak();
+		Apustua apustua = apustuak.get(0);
+		apustua.setErrepikatua(per1);
 		
 		
 		int asmatukop = p1.getApustuak().get(0).getAsmatutakoKop();
 		sut.emaitzaIpini(q, p1);
 		assertTrue(asmatukop<p1.getApustuak().get(0).getAsmatutakoKop());
-		assertTrue(per1.getMugimenduak().size()!=0);
+		assertTrue(per1.getMugimenduak().size()==3); //TODO assert-ak hobetu mugimenduaren hasierako string-a konparatzeko eta ez mugimendu kantitatea
 	}
 }

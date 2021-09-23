@@ -124,9 +124,10 @@ public class TestDataAccess {
 		}
 	}
 	
-	public List<Apustua> getApustuak() {
+	public List<Apustua> getApustuak(String erabiltzaileIzena) {
 		List<Apustua> apustuak = new ArrayList<>();
-		TypedQuery<Apustua> query = db.createQuery("SELECT a FROM Apustua a", Apustua.class);
+		TypedQuery<Apustua> query = db.createQuery("SELECT a FROM Apustua a WHERE a.erabiltzaileIzena=?1", Apustua.class);
+		query.setParameter(1, erabiltzaileIzena);
 		apustuak = query.getResultList();
 		
 		return apustuak;
