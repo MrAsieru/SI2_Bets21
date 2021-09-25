@@ -147,6 +147,9 @@ public class Apustua implements Serializable{
 	
 	@Override
 	public boolean equals(Object apus) {
+		if(apus == null) return false;
+		if (this.getClass() != apus.getClass()) return false;
+		
 		Apustua apustu = (Apustua)apus;
 		if(this.pronostikoKop.equals(apustu.getPronostikoKop())) {
 			return false;
