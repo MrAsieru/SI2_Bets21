@@ -3,12 +3,9 @@ package dataaccess;
 import static org.junit.Assert.*;
 
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import configuration.UtilDate;
-import dataaccess.DataAccess;
-import domain.Bezeroa;
 import domain.Pertsona;
 import exceptions.UserAlreadyExist;
 import test.dataaccess.TestDataAccess;
