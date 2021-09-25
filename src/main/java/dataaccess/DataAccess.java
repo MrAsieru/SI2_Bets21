@@ -428,9 +428,12 @@ public class DataAccess {
 			}else if (mota.equals("bezeroa")) {
 				berria = new Bezeroa(izena, abizena1, abizena2, erabiltzaileIzena, pasahitza, telefonoZbkia, emaila, jaiotzeData);
 			}
-			db.getTransaction().begin();
-			if (berria != null) db.persist(berria);
-			db.getTransaction().commit();
+			
+			if (berria != null) {
+				db.getTransaction().begin();
+				db.persist(berria);
+				db.getTransaction().commit();
+			}			
 			return berria;
 		}
 	}
