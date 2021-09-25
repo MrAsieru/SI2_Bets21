@@ -3,9 +3,11 @@ package configuration;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
+import java.util.logging.Logger;
 
 public class UtilDate {
-
+	
+	private UtilDate() {}
 	
 	public static Date trim(Date date) {
 
@@ -24,7 +26,7 @@ public class UtilDate {
 		 calendar.setTimeZone(TimeZone.getTimeZone("CET"));
 	     calendar.set(year, month, day,0,0,0);
 	     calendar.set(Calendar.MILLISECOND, 0);
-	     System.out.println("newDate: "+calendar.getTime());
+	     Logger.getLogger(UtilDate.class.getName()).info("newDate: "+calendar.getTime());
 	     return calendar.getTime();
 	}
 	
@@ -47,7 +49,6 @@ public class UtilDate {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
 		calendar.setTimeZone(TimeZone.getTimeZone("CET"));
-		//int month=calendar.get(Calendar.MONTH);
 		calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
 		calendar.set(Calendar.MILLISECOND, 0);
 		calendar.set(Calendar.SECOND, 0);

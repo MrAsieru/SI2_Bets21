@@ -72,15 +72,10 @@ public class BusinessLogicServer extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
-				okButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						textArea.append("\n\n\nClosing the server... ");
-					    
-							//server.close();
-						
-						System.exit(1);
-					}
-				});
+				okButton.addActionListener(actionEvent -> {	textArea.append("\n\n\nClosing the server... ");
+															System.exit(1);
+															}
+											);
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
