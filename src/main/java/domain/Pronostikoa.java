@@ -115,5 +115,16 @@ public class Pronostikoa implements Serializable{
 		}
 	}
 	
+	@Override
+	public int hashCode() {
+		int result = 17;
+		result += this.deskripzioa.hashCode();
+		if (this.question != null && this.question.getQuestionNumber() != null) 
+				result += this.question.getQuestionNumber().hashCode();
+		
+        return result;
+
+	}
+	
 	
 }
