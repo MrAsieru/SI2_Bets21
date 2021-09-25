@@ -147,8 +147,8 @@ public class Apustua implements Serializable{
 	
 	@Override
 	public boolean equals(Object apus) {
-		if(apus == null) return false;
-		if (this.getClass() != apus.getClass()) return false;
+		if (this == apus) return true;
+		if (apus == null || this.getClass() != apus.getClass()) return false;
 		
 		Apustua apustu = (Apustua)apus;
 		if(this.pronostikoKop.equals(apustu.getPronostikoKop())) {
@@ -160,6 +160,20 @@ public class Apustua implements Serializable{
 			}
 		}
 		return true;	
+	}
+	
+	@Override
+	public int hashCode() {
+		int result = 17;
+		
+		for(Pronostikoa p : pronostikoak) {
+			if (p != null) {
+				result += p.hashCode();
+			}
+		}
+		
+        return result;
+
 	}
 	
 	public boolean baduPronostikoa(Pronostikoa pronos) {
