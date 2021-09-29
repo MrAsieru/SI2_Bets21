@@ -5,6 +5,7 @@ import java.util.Date;
 
 import configuration.ConfigXML;
 import domain.Event;
+import domain.Pertsona;
 import test.dataaccess.TestDataAccess;
 
 public class TestFacadeImplementation {
@@ -34,6 +35,13 @@ public class TestFacadeImplementation {
 			dbManagerTest.close();
 			return o;
 
+		}
+
+		public Pertsona removeUser(String erabiltzaileIzena) {
+			dbManagerTest.open();
+			Pertsona p = dbManagerTest.removeUser(erabiltzaileIzena);
+			dbManagerTest.close();
+			return p;
 		}
 
 }
