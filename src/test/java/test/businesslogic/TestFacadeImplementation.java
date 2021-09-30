@@ -36,12 +36,4 @@ public class TestFacadeImplementation {
 			return o;
 
 		}
-
-		public Pertsona removeUser(String erabiltzaileIzena) {
-			dbManagerTest.open();
-			Pertsona p = dbManagerTest.removeUser(erabiltzaileIzena);
-			dbManagerTest.close();
-			return p;
-		}
-
 }
