@@ -16,12 +16,21 @@ import javax.persistence.TypedQuery;
 import configuration.ConfigXML;
 import domain.Admin;
 import domain.Apustua;
+import domain.ArretaElkarrizketa;
+import domain.ArretaMezua;
 import domain.Bezeroa;
+import domain.BezeroartekoMezua;
 import domain.Event;
 import domain.Langilea;
+import domain.Mezua;
 import domain.Pertsona;
 import domain.Question;
 import exceptions.UserAlreadyExist;
+import java.util.Collection;
+import java.util.Vector;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class TestDataAccess {
 	protected  EntityManager  db;
@@ -147,6 +156,74 @@ public class TestDataAccess {
 			return pertsona.get(0);
 		}
 		return null;
+	}
+	
+	
+	public BezeroartekoMezua bidaliMezua(Bezeroa nork, Bezeroa nori, String mezua, String gaia, String mota, double zenbatApostatu, double hilabeteanZenbat, double zenbatErrepikatuarentzat) {
+		Bezeroa igorlea = db.find(Bezeroa.class, nork.getErabiltzaileIzena());
+		Bezeroa hartzailea = db.find(Bezeroa.class, nori.getErabiltzaileIzena());
+		db.getTransaction().begin();
+		BezeroartekoMezua mezuBerria = igorlea.addBidalitakoBezeroMezua(nori, mezua, gaia, mota, zenbatApostatu, hilabeteanZenbat, zenbatErrepikatuarentzat);
+		hartzailea.addJasotakoBezeroMezua(mezuBerria);
+		db.persist(mezuBerria);
+		db.getTransaction().commit();
+		return mezuBerria;
+    }
+	
+	public Mezua mezuaJaso(Mezua mezua) {
+		if(mezua == null) return null;
+		if(mezua instanceof BezeroartekoMezua) {
+			BezeroartekoMezua m = db.find(BezeroartekoMezua.class, mezua.getIdentifikadorea());
+			return m;
+		}else if (mezua instanceof ArretaMezua) {
+			ArretaMezua m = db.find(ArretaMezua.class, mezua.getIdentifikadorea());
+			return m;
+		}else {
+			return null;
+		}
+	}
+	
+	public void removeArretaElkarhizketaGuztiz(ArretaElkarrizketa arretaElk) {
+		if(arretaElk!=null) {
+			ArretaElkarrizketa ae = db.find(ArretaElkarrizketa.class, arretaElk);
+			if(ae != null) {
+				db.getTransaction().begin();
+				
+				for(ArretaMezua amB: ae.getBezeroakBidalitakoak()) {
+					ArretaMezua a = db.find(ArretaMezua.class, amB.getIdentifikadorea());
+					if(a != null) {
+						db.remove(a);
+					}
+					
+				}
+				ae.getBezeroakBidalitakoak().clear();
+				
+				for(ArretaMezua amL: ae.getLangileakBidalitakoak()) {
+					ArretaMezua a = db.find(ArretaMezua.class, amL.getIdentifikadorea());
+					if(a != null) {
+						db.remove(a);
+					}
+					
+				}
+				ae.getLangileakBidalitakoak().clear();
+				Langilea lang = ae.getLangilea();
+				if(lang != null) {
+					lang.removeElkarrizketa(ae);
+				}
+				db.remove(ae);
+				db.getTransaction().commit();
+			}
+		}
+		
+	}
+	public Vector<ArretaMezua> getArretaMezuakDatubaseanBadaude(ArretaElkarrizketa ae){
+		ArretaElkarrizketa emaitza = db.find(ArretaElkarrizketa.class, ae.getIdentifikadorea());
+		Stream<ArretaMezua> strAmB, strAmL;
+		strAmB = emaitza.getBezeroakBidalitakoak().stream()
+				.filter(am -> this.mezuaJaso(am) != null);
+		strAmL = emaitza.getLangileakBidalitakoak().stream()
+				.filter(am -> this.mezuaJaso(am) != null);
+		return Stream.concat(strAmB, strAmL).collect(Collectors.toCollection(Vector::new));
 	}
 }
 
