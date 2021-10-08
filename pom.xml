@@ -32,6 +32,12 @@
           <version>2.19.1</version>
           <configuration>
                <testFailureIgnore>true</testFailureIgnore>
+               <includes>
+               		<include>*Int.java</include>
+               		<include>*INT.java</include>
+               		<include>*DAB.java</include>
+               		<include>*DAW.java</include>
+               </includes>
             </configuration>
         </plugin>
    </plugins>
