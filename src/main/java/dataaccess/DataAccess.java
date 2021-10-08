@@ -516,10 +516,7 @@ public class DataAccess {
 		Bezeroa erabiltzaile = db.find(Bezeroa.class, bezero.getErabiltzaileIzena());
 		Pronostikoa pronos;
 		ArrayList<Pronostikoa> pronostikoSorta = new ArrayList<Pronostikoa>();
-		for(Pronostikoa p : pronostikoak) {
-			pronos = db.find(Pronostikoa.class, p.getIdentifikadorea());
-			pronostikoSorta.add(pronos);
-		}
+		gehituApustua(pronostikoak, pronostikoSorta);
 		db.getTransaction().begin();
 		Apustua apus = erabiltzaile.addApustua(pronostikoSorta, a, null);
 		for(Pronostikoa p : pronostikoSorta) {
@@ -529,26 +526,40 @@ public class DataAccess {
 		Vector<Errepikapena> jarraitzaile=erabiltzaile.getErrepikatzaileak();
 		for(Errepikapena er: jarraitzaile) {
 			double apustudiru=0;
-			if (er.getHilabeteHonetanGeratzenDena()>0) {
-				if (er.getHilabeteHonetanGeratzenDena()>=er.getApustatukoDena()*a) {
-					apustudiru=er.getApustatukoDena()*a;
-				} else {
-					apustudiru=er.getHilabeteHonetanGeratzenDena();
-				}
-				if (er.getNork().getDirua() >= apustudiru) {
-					Apustua apustu = er.getNork().addApustua(pronostikoSorta, apustudiru, erabiltzaile);
-					for (Pronostikoa p : pronostikoSorta) {
-						p.addApustua(apustu);
-					}
-					er.getNork().addMugimendua("Apustu errepikatua egin ("+erabiltzaile+")", -apustudiru, "jokatu");
-					er.eguneratuHilHonetanGeratzenDena(-apustudiru);
-					db.persist(apus);
-				}
-			}
+			parametroarenAraberaProzesatu(a, erabiltzaile, pronostikoSorta, apus, er);
 		}
 		erabiltzaile.addMugimendua("Apustua egin ", -a, "jokatu");
 		db.getTransaction().commit();
 		return erabiltzaile;
+	}
+
+	private void parametroarenAraberaProzesatu(double a, Bezeroa erabiltzaile, ArrayList<Pronostikoa> pronostikoSorta,
+			Apustua apus, Errepikapena er) {
+		double apustudiru;
+		if (er.getHilabeteHonetanGeratzenDena()>0) {
+			if (er.getHilabeteHonetanGeratzenDena()>=er.getApustatukoDena()*a) {
+				apustudiru=er.getApustatukoDena()*a;
+			} else {
+				apustudiru=er.getHilabeteHonetanGeratzenDena();
+			}
+			if (er.getNork().getDirua() >= apustudiru) {
+				Apustua apustu = er.getNork().addApustua(pronostikoSorta, apustudiru, erabiltzaile);
+				for (Pronostikoa p : pronostikoSorta) {
+					p.addApustua(apustu);
+				}
+				er.getNork().addMugimendua("Apustu errepikatua egin ("+erabiltzaile+")", -apustudiru, "jokatu");
+				er.eguneratuHilHonetanGeratzenDena(-apustudiru);
+				db.persist(apus);
+			}
+		}
+	}
+
+	private void gehituApustua(ArrayList<Pronostikoa> pronostikoak, ArrayList<Pronostikoa> pronostikoSorta) {
+		Pronostikoa pronos;
+		for(Pronostikoa p : pronostikoak) {
+			pronos = db.find(Pronostikoa.class, p.getIdentifikadorea());
+			pronostikoSorta.add(pronos);
+		}
 	}
 	
 	public Bezeroa deleteApustua(Apustua apustua) throws EventFinished{
