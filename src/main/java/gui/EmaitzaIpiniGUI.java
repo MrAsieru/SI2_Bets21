@@ -68,9 +68,7 @@ public class EmaitzaIpiniGUI extends JFrame {
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("SetResultGUI"));
 		jComboBoxEvents.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				jLabelError.setText("");
-				jLabelErrorDate.setText("");
-				jLabelSucces.setText("");
+				labelGarbitu();
 				
 				questionModel.removeAllElements();
 				pronosticModel.removeAllElements();
@@ -127,9 +125,7 @@ public class EmaitzaIpiniGUI extends JFrame {
 		jComboBoxQuestions = new JComboBox<Question>();
 		jComboBoxQuestions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				jLabelError.setText("");
-				jLabelErrorDate.setText("");
-				jLabelSucces.setText("");
+				labelGarbitu();
 				pronosticModel.removeAllElements();
 				
 				selectedQuestion = ((domain.Question) jComboBoxQuestions.getSelectedItem());
@@ -153,9 +149,7 @@ public class EmaitzaIpiniGUI extends JFrame {
 		jButtonCreate = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreatePronosticGUI.jButtonCreate.text")); //$NON-NLS-1$ //$NON-NLS-2$
 		jButtonCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				jLabelError.setText("");
-				jLabelErrorDate.setText("");
-				jLabelSucces.setText("");
+				labelGarbitu();
 				if(selectedQuestion.getResult()!=null) {
 					jLabelError.setText(ResourceBundle.getBundle("Etiquetas").getString("QuestionResult"));
 				}else {
@@ -189,9 +183,7 @@ public class EmaitzaIpiniGUI extends JFrame {
 		getContentPane().add(jLabelErrorDate);
 		jComboBoxPronostics.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				jLabelError.setText("");
-				jLabelErrorDate.setText("");
-				jLabelSucces.setText("");
+				labelGarbitu();
 				
 				selectedPronostic = ((domain.Pronostikoa) jComboBoxPronostics.getSelectedItem());
 				if(selectedPronostic!=null) {
@@ -214,9 +206,7 @@ public class EmaitzaIpiniGUI extends JFrame {
 		// Code for JCalendar
 		this.jCalendar.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent propertychangeevent) {
-				jLabelError.setText("");
-				jLabelErrorDate.setText("");
-				jLabelSucces.setText("");
+				labelGarbitu();
 //				this.jCalendar.addPropertyChangeListener(new PropertyChangeListener() {
 //					public void propertyChange(PropertyChangeEvent propertychangeevent) {
 				if (propertychangeevent.getPropertyName().equals("locale")) {
@@ -312,5 +302,11 @@ public static void paintDaysWithEvents(JCalendar jCalendar,Vector<Date> datesWit
 	private void jButtonClose_actionPerformed(ActionEvent e) {
 		this.setVisible(false);
 		aurrekoa.setVisible(true);
+	}
+
+	private void labelGarbitu() {
+		jLabelError.setText("");
+		jLabelErrorDate.setText("");
+		jLabelSucces.setText("");
 	}
 }
