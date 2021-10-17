@@ -34,7 +34,7 @@ public class RegisterDAB {
 		//Sistema probatu
 		try {
 			sut.open(false);
-			adm = sut.register("Kutxa", "Beltzeko", "Probak", "Proba", "1234", "123456789", "DAB@junit.org", UtilDate.newDate(1970, 1, 1), "admin");
+			adm = sut.register(new RegisterParameter("Kutxa", "Beltzeko", "Probak", "Proba", "1234", "123456789", "DAB@junit.org", UtilDate.newDate(1970, 1, 1), "admin"));
 		} catch (UserAlreadyExist uae) {
 			fail();
 		} finally {
@@ -52,7 +52,7 @@ public class RegisterDAB {
 		//Sistema probatu
 		try {
 			sut.open(false);
-			lan = sut.register("Kutxa", "Beltzeko", "Probak", "Proba", "1234", "123456789", "DAB@junit.org", UtilDate.newDate(1970, 1, 1), "langilea");
+			lan = sut.register(new RegisterParameter("Kutxa", "Beltzeko", "Probak", "Proba", "1234", "123456789", "DAB@junit.org", UtilDate.newDate(1970, 1, 1), "langilea"));
 		} catch (UserAlreadyExist uae) {
 			fail();
 		} finally {
@@ -70,7 +70,7 @@ public class RegisterDAB {
 		//Sistema probatu
 		try {
 			sut.open(false);
-			bez = sut.register("Kutxa", "Beltzeko", "Probak", "Proba", "1234", "123456789", "DAB@junit.org", UtilDate.newDate(1970, 1, 1), "bezeroa");
+			bez = sut.register(new RegisterParameter("Kutxa", "Beltzeko", "Probak", "Proba", "1234", "123456789", "DAB@junit.org", UtilDate.newDate(1970, 1, 1), "bezeroa"));
 		} catch (UserAlreadyExist uae) {
 			fail();
 		} finally {
@@ -88,7 +88,7 @@ public class RegisterDAB {
 		//Sistema probatu
 		try {
 			sut.open(false);
-			per = sut.register("Kutxa", "Beltzeko", "Probak", null, "1234", "123456789", "DAB@junit.org", UtilDate.newDate(1970, 1, 1), "bezeroa");
+			per = sut.register(new RegisterParameter("Kutxa", "Beltzeko", "Probak", null, "1234", "123456789", "DAB@junit.org", UtilDate.newDate(1970, 1, 1), "bezeroa"));
 		} catch (UserAlreadyExist uae) {
 			fail();
 		} finally {
@@ -115,7 +115,7 @@ public class RegisterDAB {
 		//Sistema probatu
 		try {
 			sut.open(false);
-			per = sut.register("Kutxa", "Beltzeko", "Probak", "Proba", "1234", "123456789", "DAB@junit.org", UtilDate.newDate(1970, 1, 1), "bezeroa");
+			per = sut.register(new RegisterParameter("Kutxa", "Beltzeko", "Probak", "Proba", "1234", "123456789", "DAB@junit.org", UtilDate.newDate(1970, 1, 1), "bezeroa"));
 			fail();
 		} catch (UserAlreadyExist uae) {
 			assertTrue(true);
@@ -130,7 +130,7 @@ public class RegisterDAB {
 		//Sistema probatu
 		try {
 			sut.open(false);
-			per = sut.register("Kutxa", "Beltzeko", "Probak", "Proba", "1234", "123456789", "DAB@junit.org", UtilDate.newDate(1970, 1, 1), "beste");
+			per = sut.register(new RegisterParameter("Kutxa", "Beltzeko", "Probak", "Proba", "1234", "123456789", "DAB@junit.org", UtilDate.newDate(1970, 1, 1), "beste"));
 		} catch (UserAlreadyExist uae) {
 			fail();
 		} finally {

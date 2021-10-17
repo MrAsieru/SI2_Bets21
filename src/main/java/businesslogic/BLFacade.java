@@ -31,6 +31,8 @@ import exceptions.UserAlreadyExist;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
+import dataaccess.RegisterParameter;
+
 /**
  * Interface that specifies the business logic.
  */
@@ -85,19 +87,11 @@ public interface BLFacade  {
 	/**
 	 * Metodo honek, erabiltzaile izen gisa erabiltzaileIzena duen Pertsonarik ez badago datu basean, sarrerako datuekin
 	 * bat sortu eta datu-basean gehitzen du
-	 * @param izena
-	 * @param abizena1
-	 * @param abizena2
-	 * @param erabiltzaileIzena
-	 * @param pasahitza
-	 * @param telefonoa
-	 * @param emaila
-	 * @param jaiotzeData
-	 * @param mota
+	 * @param parameterObject TODO
 	 * @return
 	 * @throws UserAlreadyExist
 	 */
-	@WebMethod public Pertsona register(String izena, String abizena1, String abizena2, String erabiltzaileIzena, String pasahitza, String telefonoa, String emaila, Date jaiotzeData, String mota) throws UserAlreadyExist;
+	@WebMethod public Pertsona register(RegisterParameter parameterObject) throws UserAlreadyExist;
 	
 	/**
 	 * Metodo honek description eta eventDate dituen gertaerarik ez badago datu basean, sortu eta gehitu egiten du

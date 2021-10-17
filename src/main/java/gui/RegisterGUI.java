@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import businesslogic.BLFacade;
+import businesslogic.RegisterParameter;
 import configuration.UtilDate;
 import domain.Bezeroa;
 import domain.Pertsona;
@@ -285,7 +286,8 @@ public class RegisterGUI extends JFrame {
 					String telefonoa = phoneNumber.getText();
 					BLFacade facade = MainGUI.getBusinessLogic();
 					try {
-						Pertsona pertsona = facade.register(izena, abizena1, abizena2, erabiltzaileIzena, pasahitza, telefonoa, emaila, UtilDate.newDate(Integer.valueOf(year.getText()),hilabeteak.getIndexOf(hilabeteak.getSelectedItem()),Integer.valueOf(day.getText())), "bezeroa");
+						Pertsona pertsona = facade.register(new RegisterParameter(izena, abizena1, abizena2, erabiltzaileIzena, pasahitza, telefonoa, emaila, UtilDate.newDate(Integer.valueOf(year.getText()),hilabeteak.getIndexOf(hilabeteak.getSelectedItem()),Integer.valueOf(day.getText())),
+								"bezeroa"));
 						loginBezeroa((Bezeroa)pertsona);
 					}catch (UserAlreadyExist e) {
 						usernameMezua.setText(ResourceBundle.getBundle("Etiquetas").getString("AlredyUsed"));

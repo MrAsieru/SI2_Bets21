@@ -11,6 +11,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import configuration.UtilDate;
 import dataaccess.DataAccess;
+import dataaccess.RegisterParameter;
 import domain.Admin;
 import domain.Bezeroa;
 import domain.Langilea;
@@ -30,10 +31,10 @@ public class RegisterMockINT {
 		
 		try {
 			// Mockito konfiguratu
-			Mockito.doReturn(adm).when(da).register("Mockito", "Probak", "Probak", "Proba", "1234", "123456789", "Mock@junit.org", UtilDate.newDate(1970, 1, 1), "admin");
+			Mockito.doReturn(adm).when(da).register(new RegisterParameter("Mockito", "Probak", "Probak", "Proba", "1234", "123456789", "Mock@junit.org", UtilDate.newDate(1970, 1, 1), "admin"));
 			
 			// Sistema probatu
-			Pertsona jaso = sut.register("Mockito", "Probak", "Probak", "Proba", "1234", "123456789", "Mock@junit.org", UtilDate.newDate(1970, 1, 1), "admin");
+			Pertsona jaso = sut.register(new RegisterParameter("Mockito", "Probak", "Probak", "Proba", "1234", "123456789", "Mock@junit.org", UtilDate.newDate(1970, 1, 1), "admin"));
 			
 			// Konprobatu
 			assertEquals(adm, jaso);
@@ -48,10 +49,10 @@ public class RegisterMockINT {
 
 		try {
 			// Mockito konfiguratu
-			Mockito.doReturn(lan).when(da).register("Mockito", "Probak", "Probak", "Proba", "1234", "123456789", "Mock@junit.org", UtilDate.newDate(1970, 1, 1), "langilea");
+			Mockito.doReturn(lan).when(da).register(new RegisterParameter("Mockito", "Probak", "Probak", "Proba", "1234", "123456789", "Mock@junit.org", UtilDate.newDate(1970, 1, 1), "langilea"));
 			
 			// Sistema probatu
-			Pertsona jaso = sut.register("Mockito", "Probak", "Probak", "Proba", "1234", "123456789", "Mock@junit.org", UtilDate.newDate(1970, 1, 1), "langilea");
+			Pertsona jaso = sut.register(new RegisterParameter("Mockito", "Probak", "Probak", "Proba", "1234", "123456789", "Mock@junit.org", UtilDate.newDate(1970, 1, 1), "langilea"));
 			
 			// Konprobatu
 			assertEquals(lan, jaso);
@@ -66,10 +67,10 @@ public class RegisterMockINT {
 		
 		try {
 			// Mockito konfiguratu
-			Mockito.doReturn(bez).when(da).register("Mockito", "Probak", "Probak", "Proba", "1234", "123456789", "Mock@junit.org", UtilDate.newDate(1970, 1, 1), "bezeroa");
+			Mockito.doReturn(bez).when(da).register(new RegisterParameter("Mockito", "Probak", "Probak", "Proba", "1234", "123456789", "Mock@junit.org", UtilDate.newDate(1970, 1, 1), "bezeroa"));
 			
 			// Sistema probatu
-			Pertsona jaso = sut.register("Mockito", "Probak", "Probak", "Proba", "1234", "123456789", "Mock@junit.org", UtilDate.newDate(1970, 1, 1), "bezeroa");
+			Pertsona jaso = sut.register(new RegisterParameter("Mockito", "Probak", "Probak", "Proba", "1234", "123456789", "Mock@junit.org", UtilDate.newDate(1970, 1, 1), "bezeroa"));
 			
 			// Konprobatu
 			assertEquals(bez, jaso);
@@ -84,10 +85,10 @@ public class RegisterMockINT {
 
 		try {
 			// Mockito konfiguratu
-			Mockito.doReturn(null).when(da).register("Mockito", "Probak", "Probak", null, "1234", "123456789", "Mock@junit.org", UtilDate.newDate(1970, 1, 1), "bezeroa");
+			Mockito.doReturn(null).when(da).register(new RegisterParameter("Mockito", "Probak", "Probak", null, "1234", "123456789", "Mock@junit.org", UtilDate.newDate(1970, 1, 1), "bezeroa"));
 			
 			// Sistema probatu
-			Pertsona jaso = sut.register("Mockito", "Probak", "Probak", null, "1234", "123456789", "Mock@junit.org", UtilDate.newDate(1970, 1, 1), "bezeroa");
+			Pertsona jaso = sut.register(new RegisterParameter("Mockito", "Probak", "Probak", null, "1234", "123456789", "Mock@junit.org", UtilDate.newDate(1970, 1, 1), "bezeroa"));
 			
 			// Konprobatu
 			assertEquals(null, jaso);
@@ -100,10 +101,10 @@ public class RegisterMockINT {
 	public void testErabiltzaileIzenaExistitu() {		
 		try {
 			// Mockito konfiguratu
-			Mockito.doThrow(UserAlreadyExist.class).when(da).register("Mockito", "Probak", "Probak", "Proba", "1234", "123456789", "Mock@junit.org", UtilDate.newDate(1970, 1, 1), "bezeroa");
+			Mockito.doThrow(UserAlreadyExist.class).when(da).register(new RegisterParameter("Mockito", "Probak", "Probak", "Proba", "1234", "123456789", "Mock@junit.org", UtilDate.newDate(1970, 1, 1), "bezeroa"));
 			
 			// Sistema probatu
-			sut.register("Mockito", "Probak", "Probak", "Proba", "1234", "123456789", "Mock@junit.org", UtilDate.newDate(1970, 1, 1), "bezeroa");
+			sut.register(new RegisterParameter("Mockito", "Probak", "Probak", "Proba", "1234", "123456789", "Mock@junit.org", UtilDate.newDate(1970, 1, 1), "bezeroa"));
 			
 			// Konprobatu
 			fail();
@@ -119,10 +120,10 @@ public class RegisterMockINT {
 
 		try {
 			// Mockito konfiguratu
-			Mockito.doReturn(null).when(da).register("Mockito", "Probak", "Probak", "Proba", "1234", "123456789", "Mock@junit.org", UtilDate.newDate(1970, 1, 1), "beste");
+			Mockito.doReturn(null).when(da).register(new RegisterParameter("Mockito", "Probak", "Probak", "Proba", "1234", "123456789", "Mock@junit.org", UtilDate.newDate(1970, 1, 1), "beste"));
 			
 			// Sistema probatu
-			Pertsona jaso = sut.register("Mockito", "Probak", "Probak", "Proba", "1234", "123456789", "Mock@junit.org", UtilDate.newDate(1970, 1, 1), "beste");
+			Pertsona jaso = sut.register(new RegisterParameter("Mockito", "Probak", "Probak", "Proba", "1234", "123456789", "Mock@junit.org", UtilDate.newDate(1970, 1, 1), "beste"));
 			
 			// Konprobatu
 			assertEquals(null, jaso);

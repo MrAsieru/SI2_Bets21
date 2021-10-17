@@ -10,6 +10,7 @@ import javax.jws.WebService;
 
 import configuration.ConfigXML;
 import dataaccess.DataAccess;
+import dataaccess.RegisterParameter;
 import domain.Question;
 import domain.Apustua;
 import domain.ArretaElkarrizketa;
@@ -147,9 +148,9 @@ public class BLFacadeImplementation  implements BLFacade {
     }
     
     @WebMethod
-	public Pertsona register(String izena, String abizena1, String abizena2, String erabiltzaileIzena, String pasahitza, String telefonoZbkia, String email, Date jaiotzeData, String mota) throws UserAlreadyExist{
+	public Pertsona register(RegisterParameter parameterObject) throws UserAlreadyExist{
     	dbManager.open(false);
-		Pertsona emaitza = dbManager.register(izena, abizena1, abizena2, erabiltzaileIzena, pasahitza, telefonoZbkia, email, jaiotzeData, mota);
+		Pertsona emaitza = dbManager.register(parameterObject);
 		dbManager.close();
 		return emaitza;
     }

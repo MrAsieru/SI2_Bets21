@@ -52,8 +52,8 @@ public class RemoveMezuaDAB {
 			sut.open(false);
 
 			//Erabiltzaileak sortu
-			b1 = (Bezeroa) sut.register("Andrea", "Iturburu", "Gorri", idBez1, "1234", "123456789", "andrea@proba.proba", UtilDate.newDate(1970, 1, 1), mota);
-			b2 = (Bezeroa) sut.register("Pepe", "Goi", "Zuri", idBez2, "1234", "987654321", "pepe@proba.proba", UtilDate.newDate(1970, 1, 1), mota);
+			b1 = (Bezeroa) sut.register(new RegisterParameter("Andrea", "Iturburu", "Gorri", idBez1, "1234", "123456789", "andrea@proba.proba", UtilDate.newDate(1970, 1, 1), mota));
+			b2 = (Bezeroa) sut.register(new RegisterParameter("Pepe", "Goi", "Zuri", idBez2, "1234", "987654321", "pepe@proba.proba", UtilDate.newDate(1970, 1, 1), mota));
 			m = new BezeroartekoMezua("Mezua", "Gaia", "Mota", 0, 0, 0, b1, b2);
 			sut.removeMezua(m);
 			assertTrue(true);

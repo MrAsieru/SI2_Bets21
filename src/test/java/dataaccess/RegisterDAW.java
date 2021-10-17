@@ -42,7 +42,7 @@ public class RegisterDAW {
 		//Sistema probatu
 		try {
 			sut.open(false);
-			sut.register("Izena1", "Abizena1", "Abizena1", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "bezeroa");
+			sut.register(new RegisterParameter("Izena1", "Abizena1", "Abizena1", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "bezeroa"));
 			fail();
 		} catch (UserAlreadyExist uae) {
 			assertTrue(true);
@@ -59,7 +59,7 @@ public class RegisterDAW {
 		//Sistema probatu
 		try {
 			sut.open(false);
-			sut.register("Izena5", "Abizena5", "Abizena5", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "bezeroa");
+			sut.register(new RegisterParameter("Izena5", "Abizena5", "Abizena5", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "bezeroa"));
 		} catch (UserAlreadyExist uae) {
 			fail();
 		} finally {
@@ -83,7 +83,7 @@ public class RegisterDAW {
 		//Sistema probatu
 		try {
 			sut.open(false);
-			sut.register("Izena3", "Abizena3", "Abizena3", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "admin");
+			sut.register(new RegisterParameter("Izena3", "Abizena3", "Abizena3", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "admin"));
 		} catch (UserAlreadyExist uae) {
 			fail();
 		} finally {
@@ -107,7 +107,7 @@ public class RegisterDAW {
 		//Sistema probatu
 		try {
 			sut.open(false);
-			sut.register("Izena4", "Abizena4", "Abizena4", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "langilea");
+			sut.register(new RegisterParameter("Izena4", "Abizena4", "Abizena4", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "langilea"));
 		} catch (UserAlreadyExist uae) {
 			fail();
 		} finally {
@@ -131,7 +131,7 @@ public class RegisterDAW {
 		//Sistema probatu
 		try {
 			sut.open(false);
-			sut.register("Izena2", "Abizena2", "Abizena2", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "ezer");
+			sut.register(new RegisterParameter("Izena2", "Abizena2", "Abizena2", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "ezer"));
 		} catch (UserAlreadyExist uae) {
 			fail();
 		} finally {

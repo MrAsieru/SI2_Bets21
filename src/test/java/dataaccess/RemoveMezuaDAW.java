@@ -115,8 +115,8 @@ public class RemoveMezuaDAW {
 			sut.open(false);
 
 			//Erabiltzaileak sortu
-			b1 = (Bezeroa) sut.register("Andrea", "Iturburu", "Gorri", idBez1, "1234", "123456789", "andrea@proba.proba", UtilDate.newDate(1970, 1, 1), mota1);
-			l1 = (Langilea) sut.register("Pepe", "Goi", "Zuri", idLang1, "1234", "987654321", "pepe@proba.proba", UtilDate.newDate(1970, 1, 1), mota2);
+			b1 = (Bezeroa) sut.register(new RegisterParameter("Andrea", "Iturburu", "Gorri", idBez1, "1234", "123456789", "andrea@proba.proba", UtilDate.newDate(1970, 1, 1), mota1));
+			l1 = (Langilea) sut.register(new RegisterParameter("Pepe", "Goi", "Zuri", idLang1, "1234", "987654321", "pepe@proba.proba", UtilDate.newDate(1970, 1, 1), mota2));
 
 			// Erabiltzaileak era egokian sortu direla frogatu
 			assumeNotNull(b1);
@@ -194,8 +194,8 @@ public class RemoveMezuaDAW {
 			sut.open(false);
 
 			//Erabiltzaileak sortu
-			b1 = (Bezeroa) sut.register("Andrea", "Iturburu", "Gorri", idBez1, "1234", "123456789", "andrea@proba.proba", UtilDate.newDate(1970, 1, 1), mota1);
-			l1 = (Langilea) sut.register("Pepe", "Goi", "Zuri", idLang1, "1234", "987654321", "pepe@proba.proba", UtilDate.newDate(1970, 1, 1), mota2);
+			b1 = (Bezeroa) sut.register(new RegisterParameter("Andrea", "Iturburu", "Gorri", idBez1, "1234", "123456789", "andrea@proba.proba", UtilDate.newDate(1970, 1, 1), mota1));
+			l1 = (Langilea) sut.register(new RegisterParameter("Pepe", "Goi", "Zuri", idLang1, "1234", "987654321", "pepe@proba.proba", UtilDate.newDate(1970, 1, 1), mota2));
 
 			// Erabiltzaileak era egokian sortu direla frogatu
 			assumeNotNull(b1);
@@ -271,8 +271,8 @@ public class RemoveMezuaDAW {
 			sut.open(false);
 
 			//Erabiltzaileak sortu
-			b1 = (Bezeroa) sut.register("Andrea", "Iturburu", "Gorri", idBez1, "1234", "123456789", "andrea@proba.proba", UtilDate.newDate(1970, 1, 1), mota1);
-			l1 = (Langilea) sut.register("Pepe", "Goi", "Zuri", idLang1, "1234", "987654321", "pepe@proba.proba", UtilDate.newDate(1970, 1, 1), mota2);
+			b1 = (Bezeroa) sut.register(new RegisterParameter("Andrea", "Iturburu", "Gorri", idBez1, "1234", "123456789", "andrea@proba.proba", UtilDate.newDate(1970, 1, 1), mota1));
+			l1 = (Langilea) sut.register(new RegisterParameter("Pepe", "Goi", "Zuri", idLang1, "1234", "987654321", "pepe@proba.proba", UtilDate.newDate(1970, 1, 1), mota2));
 
 			// Erabiltzaileak era egokian sortu direla frogatu
 			assumeNotNull(b1);
@@ -344,8 +344,8 @@ public class RemoveMezuaDAW {
 			sut.open(false);
 
 			//Erabiltzaileak sortu
-			b1 = (Bezeroa) sut.register("Andrea", "Iturburu", "Gorri", idBez1, "1234", "123456789", "andrea@proba.proba", UtilDate.newDate(1970, 1, 1), mota1);
-			l1 = (Langilea) sut.register("Pepe", "Goi", "Zuri", idLang1, "1234", "987654321", "pepe@proba.proba", UtilDate.newDate(1970, 1, 1), mota2);
+			b1 = (Bezeroa) sut.register(new RegisterParameter("Andrea", "Iturburu", "Gorri", idBez1, "1234", "123456789", "andrea@proba.proba", UtilDate.newDate(1970, 1, 1), mota1));
+			l1 = (Langilea) sut.register(new RegisterParameter("Pepe", "Goi", "Zuri", idLang1, "1234", "987654321", "pepe@proba.proba", UtilDate.newDate(1970, 1, 1), mota2));
 
 			// Erabiltzaileak era egokian sortu direla frogatu
 			assumeNotNull(b1);
@@ -417,8 +417,8 @@ public class RemoveMezuaDAW {
 			sut.open(false);
 
 			//Erabiltzaileak sortu
-			b1 = (Bezeroa) sut.register("Andrea", "Iturburu", "Gorri", idBez1, "1234", "123456789", "andrea@proba.proba", UtilDate.newDate(1970, 1, 1), mota1);
-			l1 = (Langilea) sut.register("Pepe", "Goi", "Zuri", idLang1, "1234", "987654321", "pepe@proba.proba", UtilDate.newDate(1970, 1, 1), mota2);
+			b1 = (Bezeroa) sut.register(new RegisterParameter("Andrea", "Iturburu", "Gorri", idBez1, "1234", "123456789", "andrea@proba.proba", UtilDate.newDate(1970, 1, 1), mota1));
+			l1 = (Langilea) sut.register(new RegisterParameter("Pepe", "Goi", "Zuri", idLang1, "1234", "987654321", "pepe@proba.proba", UtilDate.newDate(1970, 1, 1), mota2));
 
 			// Erabiltzaileak era egokian sortu direla frogatu
 			assumeNotNull(b1);

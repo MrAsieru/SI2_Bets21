@@ -191,20 +191,20 @@ public class DataAccess {
 		}
 	}
 	
-	public Pertsona register(String izena, String abizena1, String abizena2, String erabiltzaileIzena, String pasahitza, String telefonoZbkia, String emaila, Date jaiotzeData, String mota) throws UserAlreadyExist{
+	public Pertsona register(RegisterParameter parameterObject) throws UserAlreadyExist{
 		TypedQuery<Pertsona> query = db.createQuery("SELECT p FROM Pertsona p WHERE p.erabiltzaileIzena=?1", Pertsona.class);
-		query.setParameter(1, erabiltzaileIzena);
+		query.setParameter(1, parameterObject.erabiltzaileIzena);
 		List<Pertsona> pertsona = query.getResultList();
 		if(!pertsona.isEmpty()) {
 			throw new UserAlreadyExist();
 		}else {
 			Pertsona berria = null;
-			if(mota.equals("admin")) {
-				berria = new Admin(izena, abizena1, abizena2, erabiltzaileIzena, pasahitza, telefonoZbkia, emaila, jaiotzeData);
-			}else if (mota.equals("langilea")) {
-				berria = new Langilea(izena, abizena1, abizena2, erabiltzaileIzena, pasahitza, telefonoZbkia, emaila, jaiotzeData);
-			}else if (mota.equals("bezeroa")) {
-				berria = new Bezeroa(izena, abizena1, abizena2, erabiltzaileIzena, pasahitza, telefonoZbkia, emaila, jaiotzeData);
+			if(parameterObject.mota.equals("admin")) {
+				berria = new Admin(parameterObject.izena, parameterObject.abizena1, parameterObject.abizena2, parameterObject.erabiltzaileIzena, parameterObject.pasahitza, parameterObject.telefonoZbkia, parameterObject.emaila, parameterObject.jaiotzeData);
+			}else if (parameterObject.mota.equals("langilea")) {
+				berria = new Langilea(parameterObject.izena, parameterObject.abizena1, parameterObject.abizena2, parameterObject.erabiltzaileIzena, parameterObject.pasahitza, parameterObject.telefonoZbkia, parameterObject.emaila, parameterObject.jaiotzeData);
+			}else if (parameterObject.mota.equals("bezeroa")) {
+				berria = new Bezeroa(parameterObject.izena, parameterObject.abizena1, parameterObject.abizena2, parameterObject.erabiltzaileIzena, parameterObject.pasahitza, parameterObject.telefonoZbkia, parameterObject.emaila, parameterObject.jaiotzeData);
 			}
 			db.getTransaction().begin();
 			db.persist(berria);
