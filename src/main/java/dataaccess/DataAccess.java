@@ -31,6 +31,7 @@ import domain.Pertsona;
 import domain.Pronostikoa;
 import domain.PronostikoaContainer;
 import domain.Question;
+import domain.RegisterParameter;
 import exceptions.EventAlreadyExist;
 import exceptions.EventFinished;
 import exceptions.PronosticAlreadyExist;

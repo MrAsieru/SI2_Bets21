@@ -11,11 +11,11 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import configuration.UtilDate;
 import dataaccess.DataAccess;
-import dataaccess.RegisterParameter;
 import domain.Admin;
 import domain.Bezeroa;
 import domain.Langilea;
 import domain.Pertsona;
+import domain.RegisterParameter;
 import exceptions.UserAlreadyExist;
 
 @RunWith(MockitoJUnitRunner.class)

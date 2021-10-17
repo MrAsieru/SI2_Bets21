@@ -24,6 +24,7 @@ import domain.BezeroartekoMezua;
 import domain.Langilea;
 import domain.Mezua;
 import domain.Pertsona;
+import domain.RegisterParameter;
 
 public class RemoveMezuaDAW {
 	//sut:system under test

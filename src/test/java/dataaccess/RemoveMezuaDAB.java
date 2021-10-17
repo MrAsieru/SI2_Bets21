@@ -14,6 +14,7 @@ import domain.Bezeroa;
 import domain.BezeroartekoMezua;
 import domain.Langilea;
 import domain.Mezua;
+import domain.RegisterParameter;
 import test.dataaccess.TestDataAccess;
 
 public class RemoveMezuaDAB {

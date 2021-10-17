@@ -22,6 +22,7 @@ import domain.Mugimendua;
 import domain.Pertsona;
 import domain.Pronostikoa;
 import domain.Question;
+import domain.RegisterParameter;
 import exceptions.PronosticAlreadyExist;
 import test.dataaccess.TestDataAccess;
 

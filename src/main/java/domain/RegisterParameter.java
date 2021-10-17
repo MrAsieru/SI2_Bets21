@@ -1,4 +1,4 @@
-package dataaccess;
+package domain;
 
 import java.util.Date;
 

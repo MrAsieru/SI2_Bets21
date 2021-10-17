@@ -10,6 +10,7 @@ import java.util.Date;
 
 
 import domain.Question;
+import domain.RegisterParameter;
 import domain.Apustua;
 import domain.ArretaElkarrizketa;
 import domain.Bezeroa;
@@ -30,8 +31,6 @@ import exceptions.UserAlreadyExist;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
-
-import dataaccess.RegisterParameter;
 
 /**
  * Interface that specifies the business logic.

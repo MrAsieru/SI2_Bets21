@@ -10,8 +10,8 @@ import javax.jws.WebService;
 
 import configuration.ConfigXML;
 import dataaccess.DataAccess;
-import dataaccess.RegisterParameter;
 import domain.Question;
+import domain.RegisterParameter;
 import domain.Apustua;
 import domain.ArretaElkarrizketa;
 import domain.Bezeroa;

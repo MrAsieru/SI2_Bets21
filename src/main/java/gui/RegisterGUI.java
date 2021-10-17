@@ -7,10 +7,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import businesslogic.BLFacade;
-import businesslogic.RegisterParameter;
 import configuration.UtilDate;
 import domain.Bezeroa;
 import domain.Pertsona;
+import domain.RegisterParameter;
 import exceptions.UserAlreadyExist;
 
 import javax.swing.JLabel;

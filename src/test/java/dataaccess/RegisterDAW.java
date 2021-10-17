@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import configuration.UtilDate;
 import domain.Pertsona;
+import domain.RegisterParameter;
 import exceptions.UserAlreadyExist;
 import test.dataaccess.TestDataAccess;
 

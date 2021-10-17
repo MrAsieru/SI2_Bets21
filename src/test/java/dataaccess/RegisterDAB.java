@@ -10,6 +10,7 @@ import domain.Admin;
 import domain.Bezeroa;
 import domain.Langilea;
 import domain.Pertsona;
+import domain.RegisterParameter;
 import exceptions.UserAlreadyExist;
 import test.dataaccess.TestDataAccess;
 

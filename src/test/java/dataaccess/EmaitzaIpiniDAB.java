@@ -17,6 +17,7 @@ import domain.Errepikapena;
 import domain.Event;
 import domain.Pronostikoa;
 import domain.Question;
+import domain.RegisterParameter;
 import test.dataaccess.TestDataAccess;
 
 public class EmaitzaIpiniDAB {
