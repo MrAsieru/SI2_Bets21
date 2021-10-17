@@ -58,25 +58,15 @@ public class MyDefaultDAI implements DataAccessInitializer {
 	 */
 	@Override
 	public void initializeDB(EntityManager entityManagerDB) {
-	
 		entityManagerDB.getTransaction().begin();
-		
 		createEvents();
-		
 		createQuestionsAndSetRelationsWithEvents();
-
 		createUsers();
-		
 		createPronostikoakAndCreateRelationsWithQuestions();
-		
 		createErrepikapenakAndCreateRelationsWithBezeroa();
-		
 		createApustuakAndCreateRalationsWithPronostikoakBezeroak();
-		
 		createMugimenduakAndCreateRelationsWithBezeroak();
-	
 		persistAllObjectsInsideDefinedDictionaries(entityManagerDB);
-
 		entityManagerDB.getTransaction().commit();
 		System.out.println("Db initialized");
 	
@@ -247,22 +237,41 @@ public class MyDefaultDAI implements DataAccessInitializer {
 	
 	
 	private void persistAllObjectsInsideDefinedDictionaries(EntityManager pEntManagerDB) {
-		for(Object objectToPersist: this.eventDictionary.values()) {
-			pEntManagerDB.persist(objectToPersist);
-		}
-		for(Object objectToPersist: this.questionDictionary.values()) {
-			pEntManagerDB.persist(objectToPersist);
-		}
-		for(Object objectToPersist: this.pertsonaDictionary.values()) {
-			pEntManagerDB.persist(objectToPersist);
-		}
-		for(Object objectToPersist: this.pronostikoDictionary.values()) {
-			pEntManagerDB.persist(objectToPersist);
-		}
+		persistAllObjectsInsideEventDictionary(pEntManagerDB);
+		persistAllObjectsInsideQuestionDictionary(pEntManagerDB);
+		persistAllObjectsInsidePertsonaDictionary(pEntManagerDB);
+		persistAllObjectsInsidePronostikoDictionary(pEntManagerDB);
+		persistAllObjectsInsideMugimenduaDictionary(pEntManagerDB);
+	}
+
+	private void persistAllObjectsInsideMugimenduaDictionary(EntityManager pEntManagerDB) {
 		for(Object objectToPersist: this.mugimenduaDictionary.values()) {
 			pEntManagerDB.persist(objectToPersist);
 		}
-		
+	}
+
+	private void persistAllObjectsInsidePronostikoDictionary(EntityManager pEntManagerDB) {
+		for(Object objectToPersist: this.pronostikoDictionary.values()) {
+			pEntManagerDB.persist(objectToPersist);
+		}
+	}
+
+	private void persistAllObjectsInsidePertsonaDictionary(EntityManager pEntManagerDB) {
+		for(Object objectToPersist: this.pertsonaDictionary.values()) {
+			pEntManagerDB.persist(objectToPersist);
+		}
+	}
+
+	private void persistAllObjectsInsideQuestionDictionary(EntityManager pEntManagerDB) {
+		for(Object objectToPersist: this.questionDictionary.values()) {
+			pEntManagerDB.persist(objectToPersist);
+		}
+	}
+
+	private void persistAllObjectsInsideEventDictionary(EntityManager pEntManagerDB) {
+		for(Object objectToPersist: this.eventDictionary.values()) {
+			pEntManagerDB.persist(objectToPersist);
+		}
 	}
 	
 
