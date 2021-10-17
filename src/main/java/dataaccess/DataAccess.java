@@ -42,6 +42,7 @@ import java.util.logging.Logger;
  * It implements the data access to the objectDb database
  */
 public class DataAccess {
+	
 	protected EntityManager db;
 	protected EntityManagerFactory emf;
 	protected DataAccessInitializer defaultInitializer = new MyDefaultDAI();
