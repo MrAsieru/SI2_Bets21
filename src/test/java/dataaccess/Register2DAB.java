@@ -14,7 +14,7 @@ import domain.RegisterParameter;
 import exceptions.UserAlreadyExist;
 import test.dataaccess.TestDataAccess;
 
-public class RegisterDAB2 {
+public class Register2DAB {
 
 	//sut:system under test
 	static DataAccessRegister sut=new DataAccessRegister(false);
