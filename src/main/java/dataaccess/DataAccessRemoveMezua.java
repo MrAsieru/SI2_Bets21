@@ -90,28 +90,6 @@ public class DataAccessRemoveMezua {
 	public void close() {
 		db.close();
 		System.out.println("DataBase closed");
-	}	
-	
-	public Pertsona register(RegisterParameter parameterObject) throws UserAlreadyExist{
-		TypedQuery<Pertsona> query = db.createQuery("SELECT p FROM Pertsona p WHERE p.erabiltzaileIzena=?1", Pertsona.class);
-		query.setParameter(1, parameterObject.erabiltzaileIzena);
-		List<Pertsona> pertsona = query.getResultList();
-		if(!pertsona.isEmpty()) {
-			throw new UserAlreadyExist();
-		}else {
-			Pertsona berria = null;
-			if(parameterObject.mota.equals("admin")) {
-				berria = new Admin(parameterObject.izena, parameterObject.abizena1, parameterObject.abizena2, parameterObject.erabiltzaileIzena, parameterObject.pasahitza, parameterObject.telefonoZbkia, parameterObject.emaila, parameterObject.jaiotzeData);
-			}else if (parameterObject.mota.equals("langilea")) {
-				berria = new Langilea(parameterObject.izena, parameterObject.abizena1, parameterObject.abizena2, parameterObject.erabiltzaileIzena, parameterObject.pasahitza, parameterObject.telefonoZbkia, parameterObject.emaila, parameterObject.jaiotzeData);
-			}else if (parameterObject.mota.equals("bezeroa")) {
-				berria = new Bezeroa(parameterObject.izena, parameterObject.abizena1, parameterObject.abizena2, parameterObject.erabiltzaileIzena, parameterObject.pasahitza, parameterObject.telefonoZbkia, parameterObject.emaila, parameterObject.jaiotzeData);
-			}
-			db.getTransaction().begin();
-			db.persist(berria);
-			db.getTransaction().commit();	
-			return berria;
-		}
 	}
 	
 	public void removeMezua(Mezua mezua) {
@@ -140,4 +118,89 @@ public class DataAccessRemoveMezua {
 			db.getTransaction().commit();
 		}
     }
+
+	public Bezeroa getBezeroa(String ErabiltzaileIzena) {
+		Bezeroa erabiltzaile = db.find(Bezeroa.class, ErabiltzaileIzena);
+		return erabiltzaile;
+	}
+	
+	public ArretaElkarrizketa arretaElkarrizketaSortu(Bezeroa bezeroa, String gaia, String mezua) {
+		Bezeroa erabiltzailea = db.find(Bezeroa.class, bezeroa.getErabiltzaileIzena());
+		db.getTransaction().begin();
+		ArretaElkarrizketa elkarrizketa = erabiltzailea.addElkarrizketa(gaia);
+		elkarrizketa.addMezua(mezua, true);
+		db.persist(elkarrizketa);
+		db.getTransaction().commit();
+		return elkarrizketa;
+	}
+	
+	public ArretaElkarrizketa arretaMezuaBidali(ArretaElkarrizketa elkarrizketa, String mezua, boolean langileari) {
+		ArretaElkarrizketa elkar = db.find(ArretaElkarrizketa.class, elkarrizketa.getIdentifikadorea());
+		db.getTransaction().begin();
+		elkar.addMezua(mezua, langileari);
+		db.getTransaction().commit();
+		return elkar;
+	}
+	
+	public ArretaElkarrizketa bezeroaEsleitu(Langilea langilea) {
+		TypedQuery<ArretaElkarrizketa> query = db.createQuery("SELECT ae FROM ArretaElkarrizketa ae WHERE ae.langilea IS NULL AND ae.amaituta=false", ArretaElkarrizketa.class);
+		List<ArretaElkarrizketa> elkarrizketak = query.getResultList();
+		if(elkarrizketak.isEmpty()) {
+			return null;
+		}
+		Langilea l = db.find(Langilea.class, langilea.getErabiltzaileIzena());
+		db.getTransaction().begin();
+	    ArretaElkarrizketa elkarrizketa = elkarrizketak.get(0);
+	    elkarrizketa.setLangilea(l);
+		l.addElkarrizketa(elkarrizketa);
+		db.getTransaction().commit();
+		return elkarrizketa;
+	}
+	
+	public void amaituElkarrizketa(ArretaElkarrizketa ae) {
+		ArretaElkarrizketa elkar = db.find(ArretaElkarrizketa.class, ae.getIdentifikadorea());
+		db.getTransaction().begin();
+		for(ArretaMezua am : elkar.getBezeroakBidalitakoak()) {
+			db.remove(am);
+		}
+		elkar.getLangilea().removeElkarrizketa(elkar);
+		for(ArretaMezua am : elkar.getLangileakBidalitakoak()) {
+			if(!am.isIkusgaiBezeroarentzat()) {
+				db.remove(am);
+			}else {
+				am.setIrakurrita(true);
+			}
+		}
+		ArretaMezua m = elkar.addMezua("", false);
+		m.setAzkena(true);
+		elkar.setAmaituta(true);
+		db.getTransaction().commit();
+	}
+	
+	public ArretaElkarrizketa getArretaElkarrizketa(ArretaElkarrizketa ae) {
+		ArretaElkarrizketa emaitza = db.find(ArretaElkarrizketa.class, ae.getIdentifikadorea());
+		return emaitza;
+	}
+	
+	public Pertsona register(RegisterParameter parameterObject) throws UserAlreadyExist{
+		TypedQuery<Pertsona> query = db.createQuery("SELECT p FROM Pertsona p WHERE p.erabiltzaileIzena=?1", Pertsona.class);
+		query.setParameter(1, parameterObject.erabiltzaileIzena);
+		List<Pertsona> pertsona = query.getResultList();
+		if(!pertsona.isEmpty()) {
+			throw new UserAlreadyExist();
+		}else {
+			Pertsona berria = null;
+			if(parameterObject.mota.equals("admin")) {
+				berria = new Admin(parameterObject.izena, parameterObject.abizena1, parameterObject.abizena2, parameterObject.erabiltzaileIzena, parameterObject.pasahitza, parameterObject.telefonoZbkia, parameterObject.emaila, parameterObject.jaiotzeData);
+			}else if (parameterObject.mota.equals("langilea")) {
+				berria = new Langilea(parameterObject.izena, parameterObject.abizena1, parameterObject.abizena2, parameterObject.erabiltzaileIzena, parameterObject.pasahitza, parameterObject.telefonoZbkia, parameterObject.emaila, parameterObject.jaiotzeData);
+			}else if (parameterObject.mota.equals("bezeroa")) {
+				berria = new Bezeroa(parameterObject.izena, parameterObject.abizena1, parameterObject.abizena2, parameterObject.erabiltzaileIzena, parameterObject.pasahitza, parameterObject.telefonoZbkia, parameterObject.emaila, parameterObject.jaiotzeData);
+			}
+			db.getTransaction().begin();
+			db.persist(berria);
+			db.getTransaction().commit();	
+			return berria;
+		}
+	}
 }
