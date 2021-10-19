@@ -17,7 +17,7 @@ import domain.Mezua;
 import domain.RegisterParameter;
 import test.dataaccess.TestDataAccess;
 
-public class RemoveMezuaDAB2 {
+public class RemoveMezua2DAB {
 	//sut:system under test
 	static DataAccessRemoveMezua sut=new DataAccessRemoveMezua(false);
 
