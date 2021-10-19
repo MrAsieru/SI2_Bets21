@@ -19,7 +19,7 @@ import domain.Pronostikoa;
 import domain.Question;
 import test.dataaccess.TestDataAccess;
 
-public class EmaitzaIpiniDAB2 {
+public class EmaitzaIpini2DAB {
 
 	Event event;
 	
