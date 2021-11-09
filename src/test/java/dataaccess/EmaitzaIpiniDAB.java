@@ -61,7 +61,10 @@ public class EmaitzaIpiniDAB {
 		
 		//Erabiltzaileak sortu
 		try {
+			Bezeroa maite = (Bezeroa)sut.register(new RegisterParameter("MaiteUrreta", "Abizena1", "Abizena1", "Proba", "Proba", "password", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "bezeroa"));
+
 		per1 = (Bezeroa)sut.register(new RegisterParameter("Izena1", "Abizena1", "Abizena1", "Proba", "Proba", "123456789", "proba@proba.proba", UtilDate.newDate(1970, 1, 1), "bezeroa"));
+
 		} catch (Exception e) {
 			e.printStackTrace(); 
 		}

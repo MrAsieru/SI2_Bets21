@@ -6,17 +6,27 @@ package gui;
 
 
 import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
+
+import org.junit.experimental.results.PrintableResult;
 
 import businesslogic.BLFacade;
+import businesslogic.BLFacadeImplementation;
+import dataaccess.DataAccess;
+import domain.Apustua;
+import domain.Bezeroa;
+import domain.Pronostikoa;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 import java.util.ResourceBundle;
-
+import java.util.Vector;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -28,6 +38,7 @@ public class MainGUI extends JFrame {
 	private JPanel jContentPane = null;
 	private JButton jButtonCreateQuery = null;
 	private JButton jButtonQueryQueries = null;
+	private JButton jButtonMaite = null;
 
     private static BLFacade appFacadeInterface;
 	
@@ -91,6 +102,7 @@ public class MainGUI extends JFrame {
 			jContentPane = new JPanel();
 			jContentPane.setLayout(new GridLayout(4, 1, 0, 0));
 			jContentPane.add(getLblNewLabel());
+			jContentPane.add(getMaiteBoton());
 			jContentPane.add(getBoton3());
 			jContentPane.add(getBoton2());
 			jContentPane.add(getPanel());
@@ -115,6 +127,19 @@ public class MainGUI extends JFrame {
 			});
 		}
 		return jButtonCreateQuery;
+	}
+	
+	private JButton getMaiteBoton(){
+		if (jButtonMaite == null) {
+			jButtonMaite = new JButton();
+			jButtonMaite.setText(ResourceBundle.getBundle("Etiquetas").getString("maite")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-1$ //$NON-NLS-2$
+			jButtonMaite.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					irekiMaiteApustuakn();
+				}
+			});
+		}
+		return jButtonMaite;
 	}
 	
 	/**
@@ -210,5 +235,47 @@ public class MainGUI extends JFrame {
 		a.setVisible(true);
 	}
 	
+	public void irekiMaiteApustuakn() {
+		this.setVisible(false);
+		
+		AbstractTableModel a = new BezeroApostuaAdapter(maiteSortu());
+		
+		JTable table = new JTable(a);
+		JScrollPane tableSP = new JScrollPane(table);
+        
+        JFrame apostuaFrame = new JFrame();
+        apostuaFrame.add(tableSP);
+        apostuaFrame.setVisible(true);
+        apostuaFrame.setLocationRelativeTo(null);
+        apostuaFrame.setBounds(100,100,600,400);
+	}
+	
+	public Bezeroa maiteSortu() {
+		Bezeroa maite = new Bezeroa("MaiteUrreta", "", "", "MaiteUrreta", "MaiteUrreta", "", "", null);
+	
+		ArrayList<Pronostikoa> pronostikoak = new ArrayList<>();
+		pronostikoak.add(new Pronostikoa());
+		pronostikoak.add(new Pronostikoa());
+		
+		maite.addApustua(pronostikoak, 100, maite);
+		Vector<Apustua> apustuak = maite.getApustuak();
+		Apustua apustua = apustuak.get(0);
+		apustua.setIdentifikadorea(88);
+		apustua.setAsmatutakoKop(2);
+		apustua.setKuotaTotala(4);
+		
+		ArrayList<Pronostikoa> pronostikoak2 = new ArrayList<>();
+		pronostikoak2.add(new Pronostikoa());
+		pronostikoak2.add(new Pronostikoa());
+		
+		maite.addApustua(pronostikoak2, 10, maite);
+		Vector<Apustua> apustuak2 = maite.getApustuak();
+		Apustua apustua2 = apustuak2.get(1);
+		apustua2.setIdentifikadorea(66);
+		apustua2.setAsmatutakoKop(11);
+		apustua2.setKuotaTotala(3);
+		
+		return maite;
+	}
 } // @jve:decl-index=0:visual-constraint="0,0"
 
