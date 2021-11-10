@@ -1,14 +1,23 @@
 package gui;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import javax.swing.table.AbstractTableModel;
 
+import domain.Apustua;
 import domain.Bezeroa;
+import domain.Pronostikoa;
 
 public class BezeroApostuaAdapter extends AbstractTableModel{
-	private Bezeroa bezeroa;
+	private ArrayList<Pronostikoa> pronostikoak = new ArrayList<>();
 	
 	public BezeroApostuaAdapter(Bezeroa b) {
-		this.bezeroa = b;
+		for (Apustua apostuas : b.getApustuak()) {
+			for (Pronostikoa pronostikoa : apostuas.getPronostikoak()) {
+				this.pronostikoak.add(pronostikoa);
+			}
+		}
 	}
 
 	@Override
@@ -18,27 +27,28 @@ public class BezeroApostuaAdapter extends AbstractTableModel{
 
 	@Override
 	public int getRowCount() {
-		return this.bezeroa.getApustuak().size();
+		return this.pronostikoak.size();
 	}
 
 	@Override
 	public Object getValueAt(int x, int y) {
 		Object object = new Object();
-		//Apostuaren identifikazioa lortuko dugu
-		if (y==0) {
-			object = this.bezeroa.getApustuak().get(x).getIdentifikadorea(); 
-		}
-		//Apostuaren pronostiko kopurua lortuko dugu
-		else if (y==1) {
-			object = this.bezeroa.getApustuak().get(x).getPronostikoKop();
-		}
-		//Apostuaren asmatutako pronostiko kopurua lortuko dugu
-		else if (y==2){
-			object = this.bezeroa.getApustuak().get(x).getAsmatutakoKop();
-		}
-		//Apostuaren kuota totala kopurua lortuko dugu
-		else if (y==3) {
-			object = this.bezeroa.getApustuak().get(x).getKuotaTotala();
+		switch (y) {
+		case 0:
+			object = this.pronostikoak.get(x).getDeskripzioa();
+			break;
+		case 1:
+			object = this.pronostikoak.get(x).getQuestion();
+			break;
+		case 2:
+			object = this.pronostikoak.get(x).getQuestion().getEvent().getEventDate();
+			break;
+		case 3:
+			object = this.pronostikoak.get(x).getKuota();
+			break;
+
+		default:
+			break;
 		}
 		return object;
 	}
@@ -47,13 +57,13 @@ public class BezeroApostuaAdapter extends AbstractTableModel{
 		String izena = "Err";
 		switch (index) {
 		case 0:
-			izena = "Identifikadorea";
+			izena = "Deskripzioa";
 			break;
 		case 1:
-			izena = "Pronostiko Kop";
+			izena = "Galdera";
 			break;
 		case 2:
-			izena = "Pronostiko Asmatuak";
+			izena = "Date";
 			break;
 		case 3:
 			izena = "Kuota";

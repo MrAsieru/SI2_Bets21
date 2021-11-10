@@ -15,7 +15,9 @@ import businesslogic.BLFacadeImplementation;
 import dataaccess.DataAccess;
 import domain.Apustua;
 import domain.Bezeroa;
+import domain.Event;
 import domain.Pronostikoa;
+import domain.Question;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -253,9 +255,27 @@ public class MainGUI extends JFrame {
 	public Bezeroa maiteSortu() {
 		Bezeroa maite = new Bezeroa("MaiteUrreta", "", "", "MaiteUrreta", "MaiteUrreta", "", "", null);
 	
+		Pronostikoa pronostikoa1 = new Pronostikoa();
+		pronostikoa1.setDeskripzioa("Desk1");
+		pronostikoa1.setQuestion(new Question("Galdera1", 0.0, new Event(1, "Desk1", new Date())));
+		pronostikoa1.setKuota(1.1);
+		Pronostikoa pronostikoa2 = new Pronostikoa();
+		pronostikoa2.setDeskripzioa("Desk2");
+		pronostikoa2.setQuestion(new Question("Galdera2", 0.0, new Event(2, "Desk1", new Date())));
+		pronostikoa2.setKuota(22.2);
+		Pronostikoa pronostikoa3 = new Pronostikoa();
+		pronostikoa3.setDeskripzioa("Desk3");
+		pronostikoa3.setQuestion(new Question("Galdera3", 0.0, new Event(3, "Desk1", new Date())));
+		pronostikoa3.setKuota(333.3);
+		Pronostikoa pronostikoa4 = new Pronostikoa();
+		pronostikoa4.setDeskripzioa("Desk4");
+		pronostikoa4.setQuestion(new Question("Galdera4", 0.0, new Event(4, "Desk1", new Date())));
+		pronostikoa4.setKuota(0.1);
+
 		ArrayList<Pronostikoa> pronostikoak = new ArrayList<>();
-		pronostikoak.add(new Pronostikoa());
-		pronostikoak.add(new Pronostikoa());
+		
+		pronostikoak.add(pronostikoa1);
+		pronostikoak.add(pronostikoa2);
 		
 		maite.addApustua(pronostikoak, 100, maite);
 		Vector<Apustua> apustuak = maite.getApustuak();
@@ -265,8 +285,8 @@ public class MainGUI extends JFrame {
 		apustua.setKuotaTotala(4);
 		
 		ArrayList<Pronostikoa> pronostikoak2 = new ArrayList<>();
-		pronostikoak2.add(new Pronostikoa());
-		pronostikoak2.add(new Pronostikoa());
+		pronostikoak2.add(pronostikoa3);
+		pronostikoak2.add(pronostikoa4);
 		
 		maite.addApustua(pronostikoak2, 10, maite);
 		Vector<Apustua> apustuak2 = maite.getApustuak();
