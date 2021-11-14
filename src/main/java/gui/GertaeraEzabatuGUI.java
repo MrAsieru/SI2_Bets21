@@ -11,6 +11,7 @@ import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Vector;
@@ -133,9 +134,9 @@ public class GertaeraEzabatuGUI extends JFrame {
 					/* Orain datorren kodea eventuen comboBox-a eguneratzen du */
 					DateFormat dateformat1 = DateFormat.getDateInstance(1, jCalendar.getLocale());
 					
-					Vector<domain.Event> events = facade.getEvents(firstDay);
+					Iterator<domain.Event> events = facade.getEvents(firstDay);
 
-					if (events.isEmpty())
+					if (!events.hasNext())
 						jLabelListOfEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("NoEvents")
 								+ ": " + dateformat1.format(calendarAct.getTime()));
 					else
@@ -144,8 +145,8 @@ public class GertaeraEzabatuGUI extends JFrame {
 					jComboBoxEvents.removeAllItems();
 					System.out.println("Events " + events);
 
-					for (domain.Event ev : events)
-						modelEvents.addElement(ev);
+					while (events.hasNext())
+						modelEvents.addElement(events.next());
 					jComboBoxEvents.repaint();
 				}else {
 					jLabelMsg.setForeground(Color.RED);
@@ -208,9 +209,9 @@ public class GertaeraEzabatuGUI extends JFrame {
 					try {
 						BLFacade facade = MainGUI.getBusinessLogic();
 
-						Vector<domain.Event> events = facade.getEvents(firstDay);
-
-						if (events.isEmpty())
+						Iterator<domain.Event> events = facade.getEvents(firstDay);
+						boolean isEmpty = !events.hasNext();
+						if (isEmpty)
 							jLabelListOfEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("NoEvents")
 									+ ": " + dateformat1.format(calendarAct.getTime()));
 						else
@@ -219,11 +220,11 @@ public class GertaeraEzabatuGUI extends JFrame {
 						jComboBoxEvents.removeAllItems();
 						System.out.println("Events " + events);
 
-						for (domain.Event ev : events)
-							modelEvents.addElement(ev);
+						while(events.hasNext())
+							modelEvents.addElement(events.next());
 						jComboBoxEvents.repaint();
 
-						if (events.size() == 0)
+						if (isEmpty)
 							btnDeleteEvent.setEnabled(false);
 						else
 							btnDeleteEvent.setEnabled(true);

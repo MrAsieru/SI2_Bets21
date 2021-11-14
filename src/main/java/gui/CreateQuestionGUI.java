@@ -161,9 +161,11 @@ public class CreateQuestionGUI extends JFrame {
 					try {
 						BLFacade facade = MainGUI.getBusinessLogic();
 
-						Vector<domain.Event> events = facade.getEvents(firstDay);
-
-						if (events.isEmpty())
+						Iterator<domain.Event> events = facade.getEvents(firstDay);
+						
+						boolean isEmpty = !events.hasNext();
+						
+						if (isEmpty)
 							jLabelListOfEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("NoEvents")
 									+ ": " + dateformat1.format(calendarAct.getTime()));
 						else
@@ -172,11 +174,11 @@ public class CreateQuestionGUI extends JFrame {
 						jComboBoxEvents.removeAllItems();
 						System.out.println("Events " + events);
 
-						for (domain.Event ev : events)
-							modelEvents.addElement(ev);
+						while (events.hasNext())
+							modelEvents.addElement(events.next());
 						jComboBoxEvents.repaint();
 
-						if (events.size() == 0)
+						if (isEmpty)
 							jButtonCreate.setEnabled(false);
 						else
 							jButtonCreate.setEnabled(true);
